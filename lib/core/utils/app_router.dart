@@ -1,4 +1,4 @@
-import 'package:falcon_gym/features/home/views/home_view.dart';
+import 'package:falcon_gym/features/home/presentation/views/home_view.dart';
 import 'package:falcon_gym/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
