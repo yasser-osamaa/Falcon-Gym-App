@@ -1,5 +1,6 @@
 import 'package:falcon_gym/features/splash/presentation/views/widegts/circule_with_latter.dart';
 import 'package:falcon_gym/features/splash/presentation/views/widegts/circule_with_opacity.dart';
+import 'package:falcon_gym/features/splash/presentation/views/widegts/splash_progress_line.dart';
 import 'package:falcon_gym/features/splash/presentation/views/widegts/typing_signture.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class SplashViewBody extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              Container(width: 68, height: 2, color: Colors.white12),
+              const SplashProgressLine(),
             ],
           ),
         ),

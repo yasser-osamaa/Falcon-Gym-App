@@ -24,7 +24,7 @@ class _TypingSignatureState extends State<TypingSignature> {
       if (_visibleLetters == _name.length) timer.cancel();
     });
 
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
 
       context.go(AppRouter.kHomeView);
