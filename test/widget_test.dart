@@ -8,23 +8,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('bottom navigation opens each section', (tester) async {
+    AppRouter.router.go(AppRouter.kHomeView);
     await tester.pumpWidget(const FalconGym());
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.byType(NavigationBar), findsOneWidget);
+    expect(find.text('Upcoming Booking'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    await tester.tap(find.byIcon(Icons.event_note_outlined));
+    await tester.pumpAndSettle();
+    expect(find.text('Bookings'), findsWidgets);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.fitness_center_outlined));
+    await tester.pumpAndSettle();
+    expect(find.text('Gym'), findsWidgets);
+
+    await tester.tap(find.byIcon(Icons.person_outline));
+    await tester.pumpAndSettle();
+    expect(find.text('Profile'), findsWidgets);
+
+    await tester.tap(find.byIcon(Icons.home_outlined));
+    await tester.pumpAndSettle();
+    expect(find.text('Upcoming Booking'), findsOneWidget);
   });
 }
