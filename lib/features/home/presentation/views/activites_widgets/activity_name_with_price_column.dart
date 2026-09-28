@@ -1,8 +1,8 @@
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:flutter/material.dart';
 
-class ActivityNameWithPrice extends StatelessWidget {
-  const ActivityNameWithPrice({super.key});
+class ActivityNameWithPriceColumn extends StatelessWidget {
+  const ActivityNameWithPriceColumn({super.key});
 
   @override
   Widget build(BuildContext context) {

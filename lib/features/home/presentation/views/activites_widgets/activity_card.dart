@@ -1,4 +1,5 @@
-import 'package:falcon_gym/features/home/presentation/views/activites_widgets/activity_name_with_price.dart';
+import 'package:falcon_gym/features/home/presentation/views/activites_widgets/activity_name_with_price_column.dart';
+import 'package:falcon_gym/features/home/presentation/views/activites_widgets/container_text_with_border_side.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/icon_card.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,6 @@ class ActivityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.sizeOf(context).height * .12,
-      //width: MediaQuery.sizeOf(context).width,
-
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(20),
@@ -34,7 +33,10 @@ class ActivityCard extends StatelessWidget {
             cardColor: Color(0xffE4E9E9),
           ),
           SizedBox(width: 15),
-          ActivityNameWithPrice(),
+          ActivityNameWithPriceColumn(),
+          Spacer(),
+          ContainerTextWithBorderSide(),
+          SizedBox(width: 20),
         ],
       ),
     );
