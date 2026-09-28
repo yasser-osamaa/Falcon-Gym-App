@@ -1,5 +1,5 @@
-import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/book_and_gym_row_cards.dart';
+import 'package:falcon_gym/features/home/presentation/views/widgets/popular_activity_section.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/upcoimg_booiking_section.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/welcome_card.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +20,9 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(height: 20),
             BookAndGymRawCards(),
             SizedBox(height: 30),
-
             UpComingBookingSection(),
-
             SizedBox(height: 20),
-
-            Text('Popular Activities', style: Styless.textStyle16),
-
+            PopularActivitySection(),
             SizedBox(height: 15),
           ],
         ),
