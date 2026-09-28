@@ -36,7 +36,7 @@ class ConfirmedSportRow extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 190, 238, 221),
+            color: Color.fromARGB(255, 213, 234, 227),
             borderRadius: BorderRadius.circular(18),
           ),
           child: Text(
