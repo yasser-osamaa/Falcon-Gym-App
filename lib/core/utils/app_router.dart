@@ -1,3 +1,4 @@
+import 'package:falcon_gym/features/home/presentation/views/activites_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/home_view.dart';
 import 'package:falcon_gym/features/splash/presentation/views/splash_view.dart';
 import 'package:falcon_gym/core/widgets/section_placeholder_view.dart';
@@ -10,6 +11,8 @@ abstract class AppRouter {
   static const String kBookinsView = '/BookinsView';
   static const String kGymView = '/GymView';
   static const String kProfileView = '/ProfileView';
+
+  static const String kActivitesView = '/ActivitesView';
 
   static GoRouter router = GoRouter(
     routes: [
@@ -100,6 +103,20 @@ abstract class AppRouter {
             ],
           ),
         ],
+      ),
+
+      GoRoute(
+        path: kActivitesView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const ActivitesView(),
+            transitionDuration: const Duration(milliseconds: 600),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
       ),
     ],
   );
