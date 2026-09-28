@@ -8,19 +8,21 @@ class IconCard extends StatelessWidget {
     this.height = 44,
     this.raduis = 14,
     required this.iconSize,
+    required this.cardColor,
   });
   final IconData icon;
   final double width;
   final double height;
   final double raduis;
   final double iconSize;
+  final Color cardColor;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cardColor,
         borderRadius: BorderRadius.circular(raduis),
         boxShadow: [
           BoxShadow(

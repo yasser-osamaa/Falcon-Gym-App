@@ -36,7 +36,7 @@ class ActionContainerCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconCard(icon: icon, iconSize: 26),
+            IconCard(icon: icon, iconSize: 26, cardColor: Colors.white),
             SizedBox(height: 18),
             Text(
               title,
@@ -60,6 +60,7 @@ class ActionContainerCard extends StatelessWidget {
                 height: 26,
                 raduis: 50,
                 iconSize: 16,
+                cardColor: Colors.white,
               ),
             ),
             SizedBox(height: 10),

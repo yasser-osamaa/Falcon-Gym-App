@@ -1,5 +1,6 @@
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/book_and_gym_row_cards.dart';
+import 'package:falcon_gym/features/home/presentation/views/widgets/upcoing_sport_card.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/welcome_card.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,10 @@ class HomeViewBody extends StatelessWidget {
               ),
             ],
           ),
+
           SizedBox(height: 20),
+
+          UpComingSportCard(),
         ],
       ),
     );
