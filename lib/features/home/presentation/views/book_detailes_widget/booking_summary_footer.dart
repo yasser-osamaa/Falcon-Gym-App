@@ -15,7 +15,6 @@ class BookingSummaryFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: false,
       child: Container(
         padding: const EdgeInsets.fromLTRB(28, 12, 28, 16),
         decoration: BoxDecoration(

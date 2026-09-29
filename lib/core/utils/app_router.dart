@@ -1,3 +1,4 @@
+import 'package:falcon_gym/features/bookings_history/presentation/views/bookings_history_view_body.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/home_view.dart';
@@ -75,10 +76,7 @@ abstract class AppRouter {
             routes: [
               GoRoute(
                 path: kBookinsView,
-                builder: (context, state) => const SectionPlaceholderView(
-                  title: 'Bookings',
-                  icon: Icons.event_note_outlined,
-                ),
+                builder: (context, state) => const BookingsHistoryViewBody(),
               ),
             ],
           ),

@@ -16,6 +16,11 @@ abstract class Styless {
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
+
+  static TextStyle textStyle19 = TextStyle(
+    fontSize: 19,
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle textStyle24 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w700,
