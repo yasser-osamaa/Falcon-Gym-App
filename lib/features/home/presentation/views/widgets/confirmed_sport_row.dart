@@ -3,8 +3,8 @@ import 'package:falcon_gym/features/home/presentation/views/widgets/icon_card.da
 import 'package:flutter/material.dart';
 
 class ConfirmedSportRow extends StatelessWidget {
-  const ConfirmedSportRow({super.key});
-
+  const ConfirmedSportRow({super.key, required this.subText});
+  final String subText;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,7 +27,7 @@ class ConfirmedSportRow extends StatelessWidget {
             ),
             SizedBox(height: 3),
             Text(
-              'Tomorrow, 7:00 PM',
+              subText,
               style: Styless.textStyle12.copyWith(color: Color(0xff7E888D)),
             ),
           ],

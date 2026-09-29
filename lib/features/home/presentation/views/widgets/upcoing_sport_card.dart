@@ -33,7 +33,7 @@ class UpComingSportCard extends StatelessWidget {
               padding: const EdgeInsets.only(left: 17, top: 17, right: 17),
               child: Column(
                 children: [
-                  ConfirmedSportRow(),
+                  ConfirmedSportRow(subText: 'Tomorrow, 7:00 PM'),
                   SizedBox(height: 15),
                   DateRaw(),
                   SizedBox(height: 8),
