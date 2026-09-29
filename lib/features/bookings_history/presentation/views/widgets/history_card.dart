@@ -23,45 +23,43 @@ class HistoryCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Expanded(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 17, top: 17, right: 17),
-          child: Column(
-            children: [
-              ConfirmedSportRow(subText: 'Indour Court 02'),
-              SizedBox(height: 15),
-              Divider(color: Colors.black.withValues(alpha: .1), thickness: .9),
-              SizedBox(height: 10),
-              DateContainerRow(),
-              Expanded(child: SizedBox(height: 8)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Booking code FG-48291',
-                    style: Styless.textStyle12.copyWith(
-                      color: Color(0xff657178),
-                      fontWeight: FontWeight.w700,
-                    ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 17, top: 17, right: 17),
+        child: Column(
+          children: [
+            ConfirmedSportRow(subText: 'Indour Court 02'),
+            SizedBox(height: 15),
+            Divider(color: Colors.black.withValues(alpha: .1), thickness: .9),
+            SizedBox(height: 10),
+            DateContainerRow(),
+            Expanded(child: SizedBox(height: 8)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Booking code FG-48291',
+                  style: Styless.textStyle12.copyWith(
+                    color: Color(0xff657178),
+                    fontWeight: FontWeight.w700,
                   ),
-                  Text(
-                    '300EGP',
-                    style: Styless.textStyle15.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                    ),
+                ),
+                Text(
+                  '300EGP',
+                  style: Styless.textStyle15.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
                   ),
-                ],
-              ),
-              Expanded(child: SizedBox(height: 8)),
-              SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                height: 45,
-                child: CustomTextButton(),
-              ),
-              Expanded(child: SizedBox(height: 8)),
-            ],
-          ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width,
+              height: 45,
+              child: CustomTextButton(),
+            ),
+            SizedBox(height: 20),
+          ],
         ),
       ),
     );

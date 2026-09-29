@@ -8,10 +8,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:falcon_gym/features/bookings_history/presentation/views/bookings_history_view_body.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/history_card.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/no_upcoming_bookings.dart';
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/main.dart';
 
 void main() {
+  testWidgets('booking tabs show their matching content', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(home: Scaffold(body: BookingsHistoryViewBody())),
+    );
+
+    expect(find.byType(HistoryCard), findsOneWidget);
+    expect(find.byType(NoUpcomingBookings), findsNothing);
+
+    await tester.tap(find.text('Past'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(HistoryCard), findsNothing);
+    expect(find.byType(NoUpcomingBookings), findsOneWidget);
+
+    await tester.tap(find.text('Upcoming'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(HistoryCard), findsOneWidget);
+    expect(find.byType(NoUpcomingBookings), findsNothing);
+  });
+
   testWidgets('bottom navigation opens each section', (tester) async {
     AppRouter.router.go(AppRouter.kHomeView);
     await tester.pumpWidget(const FalconGym());

@@ -1,15 +1,15 @@
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/toggle_button.dart';
 import 'package:flutter/material.dart';
 
-class UpcomingToggle extends StatefulWidget {
-  const UpcomingToggle({super.key});
+class UpcomingToggle extends StatelessWidget {
+  const UpcomingToggle({
+    super.key,
+    required this.isUpcoming,
+    required this.onChanged,
+  });
 
-  @override
-  State<UpcomingToggle> createState() => _UpcomingToggleState();
-}
-
-class _UpcomingToggleState extends State<UpcomingToggle> {
-  bool isUpcoming = true;
+  final bool isUpcoming;
+  final ValueChanged<bool> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +25,13 @@ class _UpcomingToggleState extends State<UpcomingToggle> {
           ToggleButton(
             title: 'Upcoming',
             isSelected: isUpcoming,
-            onTap: () {
-              setState(() {
-                isUpcoming = true;
-              });
-            },
+            onTap: () => onChanged(true),
           ),
 
           ToggleButton(
             title: 'Past',
             isSelected: !isUpcoming,
-            onTap: () {
-              setState(() {
-                isUpcoming = false;
-              });
-            },
+            onTap: () => onChanged(false),
           ),
         ],
       ),
