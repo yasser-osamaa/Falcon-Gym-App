@@ -1,5 +1,5 @@
 import 'package:falcon_gym/core/utils/styless.dart';
-import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/history_card.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/no_upcoming_bookings.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/upcoming_toggle.dart';
 import 'package:flutter/material.dart';
 
@@ -19,15 +19,16 @@ class BookingsHistoryViewBody extends StatelessWidget {
             SizedBox(height: 20),
             UpcomingToggle(),
             SizedBox(height: 20),
-            Text(
-              'SATURDAY, 26 APRIL',
-              style: Styless.textStyle12.copyWith(
-                fontWeight: FontWeight.w700,
-                color: Colors.black.withValues(alpha: .4),
-              ),
-            ),
-            SizedBox(height: 15),
-            HistoryCard(),
+            // Text(
+            //   'SATURDAY, 26 APRIL',
+            //   style: Styless.textStyle12.copyWith(
+            //     fontWeight: FontWeight.w700,
+            //     color: Colors.black.withValues(alpha: .4),
+            //   ),
+            // ),
+            //  SizedBox(height: 15),
+            //HistoryCard(),
+            Expanded(child: Center(child: NoUpcomingBookings())),
           ],
         ),
       ),
