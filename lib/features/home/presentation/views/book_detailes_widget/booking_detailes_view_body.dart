@@ -5,14 +5,14 @@ import 'booking_header.dart';
 import 'booking_summary_footer.dart';
 import 'booking_time_section.dart';
 
-class BookingSelection extends StatefulWidget {
-  const BookingSelection({super.key});
+class BookDetailesViewBody extends StatefulWidget {
+  const BookDetailesViewBody({super.key});
 
   @override
-  State<BookingSelection> createState() => _BookingSelectionState();
+  State<BookDetailesViewBody> createState() => _BookDetailesViewBodyState();
 }
 
-class _BookingSelectionState extends State<BookingSelection> {
+class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
   String _selectedDate = 'Sat 26';
   String _selectedTime = '7:00 PM';
 
