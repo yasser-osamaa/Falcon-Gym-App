@@ -26,7 +26,7 @@ class BookingsHistoryViewBody extends StatelessWidget {
                 color: Colors.black.withValues(alpha: .4),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 15),
             HistoryCard(),
           ],
         ),

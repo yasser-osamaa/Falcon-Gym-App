@@ -1,4 +1,6 @@
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/custom_text_button.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/date_container_row.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/confirmed_sport_row.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +10,7 @@ class HistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height * .3,
+      height: MediaQuery.sizeOf(context).height * .35,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -29,9 +31,8 @@ class HistoryCard extends StatelessWidget {
               ConfirmedSportRow(subText: 'Indour Court 02'),
               SizedBox(height: 15),
               Divider(color: Colors.black.withValues(alpha: .1), thickness: .9),
-              SizedBox(height: 15),
-
-              SizedBox(height: 8),
+              SizedBox(height: 10),
+              DateContainerRow(),
               Expanded(child: SizedBox(height: 8)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,6 +52,12 @@ class HistoryCard extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              Expanded(child: SizedBox(height: 8)),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                height: 45,
+                child: CustomTextButton(),
               ),
               Expanded(child: SizedBox(height: 8)),
             ],
