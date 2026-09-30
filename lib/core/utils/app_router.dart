@@ -2,6 +2,7 @@ import 'package:falcon_gym/features/bookings_history/presentation/views/bookings
 import 'package:falcon_gym/features/home/presentation/views/activites_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/home_view.dart';
+import 'package:falcon_gym/features/profile/presentation/views/profile_view_body.dart';
 import 'package:falcon_gym/features/splash/presentation/views/splash_view.dart';
 import 'package:falcon_gym/core/widgets/section_placeholder_view.dart';
 import 'package:flutter/material.dart';
@@ -95,10 +96,7 @@ abstract class AppRouter {
             routes: [
               GoRoute(
                 path: kProfileView,
-                builder: (context, state) => const SectionPlaceholderView(
-                  title: 'Profile',
-                  icon: Icons.person_outline,
-                ),
+                builder: (context, state) => ProfileViewBody(),
               ),
             ],
           ),

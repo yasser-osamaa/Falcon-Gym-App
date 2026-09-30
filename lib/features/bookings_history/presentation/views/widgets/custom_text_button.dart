@@ -9,16 +9,14 @@ class CustomTextButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 238, 216, 216),
+        backgroundColor: Color(0xffF9EEEE),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(12),
         ),
       ),
       child: Text(
         'Cancel',
-        style: Styless.textStyle15.copyWith(
-          color: Color.fromARGB(255, 128, 92, 92),
-        ),
+        style: Styless.textStyle15.copyWith(color: Color(0xffB24C4C)),
       ),
     );
   }
