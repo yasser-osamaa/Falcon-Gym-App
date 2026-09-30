@@ -28,6 +28,9 @@ class BookAndGymRawCards extends StatelessWidget {
             subTitle: 'View membership plans and prices',
             color: Color(0xffF0EBE4),
             icon: Icons.fitness_center,
+            onTap: () {
+              context.go(AppRouter.kGymView);
+            },
           ),
         ),
       ],
