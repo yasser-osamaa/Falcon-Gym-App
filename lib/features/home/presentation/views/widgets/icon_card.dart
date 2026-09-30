@@ -9,6 +9,8 @@ class IconCard extends StatelessWidget {
     this.raduis = 14,
     required this.iconSize,
     required this.cardColor,
+    this.iconColor,
+    this.hasShadow = true,
   });
   final IconData icon;
   final double width;
@@ -16,6 +18,8 @@ class IconCard extends StatelessWidget {
   final double raduis;
   final double iconSize;
   final Color cardColor;
+  final Color? iconColor;
+  final bool hasShadow;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,16 +28,20 @@ class IconCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.circular(raduis),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.12),
-            blurRadius: 12,
-            spreadRadius: 1,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: hasShadow
+            ? [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.12),
+                  blurRadius: 12,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 4),
+                ),
+              ]
+            : null,
       ),
-      child: Center(child: Icon(icon, size: iconSize)),
+      child: Center(
+        child: Icon(icon, size: iconSize, color: iconColor),
+      ),
     );
   }
 }

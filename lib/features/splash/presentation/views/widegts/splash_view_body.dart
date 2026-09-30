@@ -11,7 +11,11 @@ class SplashViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned(top: -130, right: -100, child: CirculeWithOpacity()),
+        Positioned(
+          top: -130,
+          right: -100,
+          child: CirculeWithOpacity(height: 280, width: 280),
+        ),
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
