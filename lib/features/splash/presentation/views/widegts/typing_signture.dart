@@ -27,7 +27,8 @@ class _TypingSignatureState extends State<TypingSignature> {
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
 
-      context.go(AppRouter.kHomeView);
+      // context.go(AppRouter.kHomeView);
+      context.go(AppRouter.kAuthView);
     });
   }
 

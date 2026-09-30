@@ -1,4 +1,5 @@
 import 'package:falcon_gym/core/widgets/main_view.dart';
+import 'package:falcon_gym/features/auth/presentation/views/auth_view.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/bookings_history_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/gym_view_body.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_view.dart';
@@ -17,6 +18,8 @@ abstract class AppRouter {
 
   static const String kActivitesView = '/ActivitesView';
   static const String kBookDetailesView = '/BookDetailesView';
+
+  static const String kAuthView = '/AuthView';
 
   static GoRouter router = GoRouter(
     routes: [
@@ -71,7 +74,7 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             child: const ActivitesView(),
-            transitionDuration: const Duration(milliseconds: 600),
+            transitionDuration: const Duration(milliseconds: 400),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
                   return FadeTransition(opacity: animation, child: child);
@@ -85,6 +88,20 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             child: const BookDetailesView(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kAuthView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const AuthView(),
             transitionDuration: const Duration(milliseconds: 300),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
