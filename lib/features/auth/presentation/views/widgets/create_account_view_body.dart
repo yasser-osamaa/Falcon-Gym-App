@@ -1,13 +1,14 @@
-import 'package:falcon_gym/constants.dart';
+import 'package:falcon_gym/features/auth/presentation/views/widgets/member_category_section.dart';
+import 'package:flutter/material.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/auth_toggle.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/auth_text_field.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/custom_auth_button.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/welcome_falcon_row.dart';
-import 'package:flutter/material.dart';
 
-class AuthViewBody extends StatelessWidget {
-  const AuthViewBody({super.key, required this.onModeChanged});
+class CreateAccountView extends StatelessWidget {
+  const CreateAccountView({super.key, required this.onModeChanged});
+
   final ValueChanged<bool> onModeChanged;
 
   @override
@@ -17,7 +18,10 @@ class AuthViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WelcomeFalconRow(),
+          const WelcomeFalconRow(
+            title: 'Join the club',
+            subtitle: 'Create your account and choose your member category.',
+          ),
           const SizedBox(height: 26),
           Container(
             padding: const EdgeInsets.all(16),
@@ -37,57 +41,49 @@ class AuthViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AuthToggle(
+                  isCreateAccountSelected: true,
                   onChanged: onModeChanged,
-                  isCreateAccountSelected: false,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
+                const AuthTextField(
+                  label: 'Full name',
+                  hintText: 'Enter your full name',
+                  fieldHeight: 60,
+                  labelFontSize: 15,
+                ),
+                const SizedBox(height: 8),
                 const AuthTextField(
                   label: 'Email address',
                   hintText: 'you@example.com',
+                  fieldHeight: 60,
+                  labelFontSize: 15,
                 ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Password',
-                      style: Styless.textStyle15.copyWith(
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        minimumSize: Size.zero,
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      child: Text(
-                        'Forgot password?',
-                        style: Styless.textStyle12.copyWith(
-                          color: const Color(0xFFAA612F),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 7),
+                const SizedBox(height: 8),
                 const AuthTextField(
-                  label: '',
-                  hintText: 'Enter your password',
-                  obscureText: true,
+                  label: 'Phone number',
+                  hintText: '+20 100 000 0000',
+                  fieldHeight: 60,
+                  labelFontSize: 15,
                 ),
-                const SizedBox(height: 14),
-                CustomAuthButton(),
+                const SizedBox(height: 8),
+                const AuthTextField(
+                  label: 'Password',
+                  hintText: 'At least 8 characters',
+                  obscureText: true,
+                  fieldHeight: 60,
+                  labelFontSize: 15,
+                ),
                 const SizedBox(height: 12),
+                MemberCategorySection(),
+                const SizedBox(height: 14),
+                const CustomAuthButton(label: 'Create my account'),
+                const SizedBox(height: 10),
                 Center(
                   child: Text(
-                    'Secure access for Falcon Gym members.',
+                    "By creating an account, you agree to Falcon Gym's terms and privacy policy.",
+                    textAlign: TextAlign.center,
                     style: Styless.textStyle12.copyWith(
                       color: const Color(0xFF929DA1),
-                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),

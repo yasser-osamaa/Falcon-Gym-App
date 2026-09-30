@@ -4,7 +4,14 @@ import 'package:falcon_gym/features/home/presentation/views/widgets/falcon_gym_c
 import 'package:flutter/material.dart';
 
 class WelcomeFalconRow extends StatelessWidget {
-  const WelcomeFalconRow({super.key});
+  const WelcomeFalconRow({
+    super.key,
+    this.title = 'Welcome back',
+    this.subtitle = 'Sign in to manage your bookings and membership.',
+  });
+
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,9 @@ class WelcomeFalconRow extends StatelessWidget {
           child: const FalconGymCircule(),
         ),
         const SizedBox(width: 14),
-        Expanded(child: WelcomeFalconTextsColumn()),
+        Expanded(
+          child: WelcomeFalconTextsColumn(title: title, subtitle: subtitle),
+        ),
       ],
     );
   }

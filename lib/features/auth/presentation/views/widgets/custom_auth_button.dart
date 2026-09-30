@@ -3,7 +3,9 @@ import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:flutter/material.dart';
 
 class CustomAuthButton extends StatelessWidget {
-  const CustomAuthButton({super.key});
+  const CustomAuthButton({super.key, this.label = 'Sign in'});
+
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class CustomAuthButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Sign in',
+              label,
               style: Styless.textStyle15.copyWith(color: Colors.white),
             ),
             const SizedBox(width: 8),

@@ -7,11 +7,15 @@ class AuthTextField extends StatelessWidget {
     required this.label,
     required this.hintText,
     this.obscureText = false,
+    this.fieldHeight = 70,
+    this.labelFontSize = 15,
   });
 
   final String label;
   final String hintText;
   final bool obscureText;
+  final double fieldHeight;
+  final double labelFontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +28,13 @@ class AuthTextField extends StatelessWidget {
             style: Styless.textStyle15.copyWith(
               color: const Color(0xFF202E34),
               fontWeight: FontWeight.w600,
+              fontSize: labelFontSize,
             ),
           ),
           const SizedBox(height: 7),
         ],
         SizedBox(
-          height: 70,
+          height: fieldHeight,
           child: TextField(
             obscureText: obscureText,
             style: Styless.textStyle15.copyWith(color: const Color(0xFF202E34)),
@@ -38,9 +43,9 @@ class AuthTextField extends StatelessWidget {
               hintStyle: Styless.textStyle12.copyWith(
                 color: const Color(0xFF9AA4A8),
               ),
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: 18,
-                vertical: 18,
+                vertical: fieldHeight < 70 ? 10 : 18,
               ),
               filled: true,
               fillColor: const Color(0xFFFBFCFB),

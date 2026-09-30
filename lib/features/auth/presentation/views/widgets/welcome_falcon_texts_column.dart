@@ -3,7 +3,14 @@ import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeFalconTextsColumn extends StatelessWidget {
-  const WelcomeFalconTextsColumn({super.key});
+  const WelcomeFalconTextsColumn({
+    super.key,
+    this.title = 'Welcome back',
+    this.subtitle = 'Sign in to manage your bookings and membership.',
+  });
+
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,7 @@ class WelcomeFalconTextsColumn extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         Text(
-          'Welcome back',
+          title,
           style: Styless.textStyle24.copyWith(
             color: kPrimaryColor,
             fontSize: 21,
@@ -30,7 +37,7 @@ class WelcomeFalconTextsColumn extends StatelessWidget {
         ),
         const SizedBox(height: 3),
         Text(
-          'Sign in to manage your bookings and membership.',
+          subtitle,
           style: Styless.textStyle12.copyWith(
             color: const Color(0xFF77838A),
             fontWeight: FontWeight.w500,
