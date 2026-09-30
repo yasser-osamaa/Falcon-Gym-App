@@ -7,7 +7,7 @@ class ActiveMemberContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: const Color(0xffE4F1EC),
         borderRadius: BorderRadius.circular(20),
@@ -16,7 +16,7 @@ class ActiveMemberContainer extends StatelessWidget {
         'ACTIVE MEMBERSHIP',
         style: Styless.textStyle12.copyWith(
           color: const Color(0xff397A67),
-          fontSize: 8,
+          fontSize: 10,
           fontWeight: FontWeight.w700,
           letterSpacing: 0.6,
         ),
