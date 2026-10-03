@@ -2,6 +2,9 @@ import 'package:falcon_gym/core/widgets/main_view.dart';
 import 'package:falcon_gym/features/auth/presentation/views/auth_view.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/bookings_history_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/gym_view_body.dart';
+import 'package:falcon_gym/features/gym/presentation/view/widgets/leg_day_view_body.dart';
+import 'package:falcon_gym/features/gym/presentation/view/widgets/pull_day_view_body.dart';
+import 'package:falcon_gym/features/gym/presentation/view/widgets/push_day_view_body.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/home_view.dart';
@@ -22,6 +25,10 @@ abstract class AppRouter {
   static const String kBookDetailesView = '/BookDetailesView';
 
   static const String kAuthView = '/AuthView';
+
+  static const String kPushView = '/PushView';
+  static const String kPullView = '/PullView';
+  static const String kLegView = '/LegView';
 
   static const String kHelpView = '/HelpView';
   static const String kTermsView = '/TermsView';
@@ -135,6 +142,48 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             child: const TermsView(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kPushView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const PushDayViewBody(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kPullView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const PullDayViewBody(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kLegView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const LegDayViewBody(),
             transitionDuration: const Duration(milliseconds: 300),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {

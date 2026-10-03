@@ -1,5 +1,7 @@
+import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/training_program_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TrainingProgramsSection extends StatelessWidget {
   const TrainingProgramsSection({super.key});
@@ -7,27 +9,36 @@ class TrainingProgramsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
         TrainingProgramCard(
+          onTap: () {
+            context.push(AppRouter.kPushView);
+          },
           number: '01',
           title: 'Push Day',
-          detail: 'Chest and shoulders',
+          detail: 'Chest, Shoulders, Triceps',
           duration: '45 min',
           accentColor: Color(0xFFE7ECEC),
         ),
         SizedBox(height: 8),
         TrainingProgramCard(
+          onTap: () {
+            context.push(AppRouter.kPullView);
+          },
           number: '02',
           title: 'Pull Day',
-          detail: 'back and back shoulder',
+          detail: 'Back, Biceps, Rear Delts',
           duration: '45 min',
           accentColor: Color(0xFFF0EAE2),
         ),
         SizedBox(height: 8),
         TrainingProgramCard(
+          onTap: () {
+            context.push(AppRouter.kLegView);
+          },
           number: '03',
           title: 'Legs Day',
-          detail: 'Legs, glutes and mobility',
+          detail: 'Quads, Hamstrings, Glutes, Calves',
           duration: '50 min',
           accentColor: Color(0xFFEAE8EF),
         ),
