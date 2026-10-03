@@ -1,5 +1,7 @@
+import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/features/profile/presentation/views/widgets/profile_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MenuItemsSections extends StatelessWidget {
   const MenuItemsSections({super.key});
@@ -13,7 +15,7 @@ class MenuItemsSections extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: const Color(0xffEEF0F0)),
       ),
-      child: const Column(
+      child: Column(
         children: [
           ProfileMenuItem(
             icon: Icons.person_outline,
@@ -23,11 +25,20 @@ class MenuItemsSections extends StatelessWidget {
             icon: Icons.credit_card_outlined,
             title: 'My Membership',
           ),
-          ProfileMenuItem(icon: Icons.help_outline, title: 'Help & Support'),
+          ProfileMenuItem(
+            icon: Icons.help_outline,
+            title: 'Help & Support',
+            onTap: () {
+              context.push(AppRouter.kHelpView);
+            },
+          ),
           ProfileMenuItem(
             icon: Icons.description_outlined,
             title: 'Terms & Conditions',
             showDivider: false,
+            onTap: () {
+              context.push(AppRouter.kTermsView);
+            },
           ),
         ],
       ),

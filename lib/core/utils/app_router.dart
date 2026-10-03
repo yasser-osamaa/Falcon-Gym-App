@@ -5,7 +5,9 @@ import 'package:falcon_gym/features/gym/presentation/view/gym_view_body.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/home_view.dart';
+import 'package:falcon_gym/features/profile/presentation/views/help_view.dart';
 import 'package:falcon_gym/features/profile/presentation/views/profile_view_body.dart';
+import 'package:falcon_gym/features/profile/presentation/views/terms_view.dart';
 import 'package:falcon_gym/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +22,9 @@ abstract class AppRouter {
   static const String kBookDetailesView = '/BookDetailesView';
 
   static const String kAuthView = '/AuthView';
+
+  static const String kHelpView = '/HelpView';
+  static const String kTermsView = '/TermsView';
 
   static GoRouter router = GoRouter(
     routes: [
@@ -102,6 +107,34 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             child: const AuthView(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kHelpView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const HelpView(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kTermsView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const TermsView(),
             transitionDuration: const Duration(milliseconds: 300),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {

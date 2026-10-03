@@ -2,6 +2,7 @@ import 'package:falcon_gym/features/profile/presentation/views/widgets/custome_b
 import 'package:falcon_gym/features/profile/presentation/views/widgets/member_data_section.dart';
 import 'package:falcon_gym/features/profile/presentation/views/widgets/menu_items_section.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -19,7 +20,11 @@ class ProfileViewBody extends StatelessWidget {
               const SizedBox(height: 16),
               MenuItemsSections(),
               const SizedBox(height: 13),
-              CustomButtonWithIcon(),
+              CustomButtonWithIcon(
+                onTap: () {
+                  context.go('/');
+                },
+              ),
             ],
           ),
         ),
