@@ -1,10 +1,12 @@
 import 'package:falcon_gym/constants.dart';
+import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/auth_toggle.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/auth_text_field.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/custom_auth_button.dart';
 import 'package:falcon_gym/features/auth/presentation/views/widgets/welcome_falcon_row.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AuthViewBody extends StatelessWidget {
   const AuthViewBody({super.key, required this.onModeChanged});
@@ -80,7 +82,11 @@ class AuthViewBody extends StatelessWidget {
                   obscureText: true,
                 ),
                 const SizedBox(height: 14),
-                CustomAuthButton(),
+                CustomAuthButton(
+                  onTap: () {
+                    context.go(AppRouter.kHomeView);
+                  },
+                ),
                 const SizedBox(height: 12),
                 Center(
                   child: Text(
