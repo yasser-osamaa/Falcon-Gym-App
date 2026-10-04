@@ -26,6 +26,12 @@ class UserModel {
   }
 
   UserEntity toEntity() {
-    return UserEntity(id: id, email: email, name: name, type: type);
+    return UserEntity(
+      id: id,
+      email: email,
+      name: name,
+      type: type,
+      phone: phone,
+    );
   }
 }
