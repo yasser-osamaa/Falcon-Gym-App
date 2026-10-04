@@ -9,6 +9,8 @@ class AuthTextField extends StatelessWidget {
     this.obscureText = false,
     this.fieldHeight = 70,
     this.labelFontSize = 15,
+    this.validator,
+    this.onSaved,
   });
 
   final String label;
@@ -16,7 +18,8 @@ class AuthTextField extends StatelessWidget {
   final bool obscureText;
   final double fieldHeight;
   final double labelFontSize;
-
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,7 +38,9 @@ class AuthTextField extends StatelessWidget {
         ],
         SizedBox(
           height: fieldHeight,
-          child: TextField(
+          child: TextFormField(
+            onSaved: onSaved,
+            validator: validator,
             obscureText: obscureText,
             style: Styless.textStyle15.copyWith(color: const Color(0xFF202E34)),
             decoration: InputDecoration(
