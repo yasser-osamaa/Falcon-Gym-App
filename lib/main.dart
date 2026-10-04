@@ -1,4 +1,5 @@
 import 'package:falcon_gym/core/utils/app_router.dart';
+import 'package:falcon_gym/core/utils/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -9,6 +10,7 @@ void main() async {
   final supabaseUrl = dotenv.env['SUPABASE_URL']!;
   final supabaseKey = dotenv.env['SUPABASE_ANON_KEY']!;
   await Supabase.initialize(url: supabaseUrl, publishableKey: supabaseKey);
+  setupLocator();
 
   runApp(const FalconGym());
 }
