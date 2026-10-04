@@ -2,24 +2,40 @@ import 'package:falcon_gym/features/auth/presentation/views/widgets/membership_c
 import 'package:flutter/material.dart';
 
 class MemberCategoryColumn extends StatefulWidget {
-  const MemberCategoryColumn({super.key});
+  const MemberCategoryColumn({
+    super.key,
+    this.memberType = 'Civilian',
+    required this.onChanged,
+  });
+  final String memberType;
+  final ValueChanged<String> onChanged;
 
   @override
   State<MemberCategoryColumn> createState() => _MemberCategoryColumnState();
 }
 
 class _MemberCategoryColumnState extends State<MemberCategoryColumn> {
-  String memberShip = 'Civilian';
+  late String memberShip;
+  @override
+  void initState() {
+    super.initState();
+    memberShip = widget.memberType;
+  }
+
+  void selectMembership(String type) {
+    setState(() {
+      memberShip = type;
+    });
+
+    widget.onChanged(type);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         GestureDetector(
-          onTap: () {
-            setState(() {
-              memberShip = 'Civilian';
-            });
-          },
+          onTap: () => selectMembership('Civilian'),
           child: MembershipCategoryTile(
             title: 'Civilian',
             subtitle: 'Flexible access for all guests',
@@ -30,11 +46,7 @@ class _MemberCategoryColumnState extends State<MemberCategoryColumn> {
         ),
         const SizedBox(height: 8),
         GestureDetector(
-          onTap: () {
-            setState(() {
-              memberShip = 'Armed';
-            });
-          },
+          onTap: () => selectMembership('Armed'),
           child: MembershipCategoryTile(
             title: 'Armed Forces',
             subtitle: 'Exclusive member rate',
@@ -45,11 +57,7 @@ class _MemberCategoryColumnState extends State<MemberCategoryColumn> {
         ),
         const SizedBox(height: 8),
         GestureDetector(
-          onTap: () {
-            setState(() {
-              memberShip = 'Dar';
-            });
-          },
+          onTap: () => selectMembership('Dar'),
           child: MembershipCategoryTile(
             title: 'Dar Member',
             subtitle: 'Preferred Dar member rate',

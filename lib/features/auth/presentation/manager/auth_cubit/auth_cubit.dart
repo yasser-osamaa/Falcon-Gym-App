@@ -19,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> registre({
+  Future<void> register({
     required String email,
     required String password,
     required String name,
@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
 
     try {
-      final user = await authRepo.registreNewUser(
+      final user = await authRepo.registerNewUser(
         email: email,
         password: password,
         name: name,

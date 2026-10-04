@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class TypingSignature extends StatefulWidget {
   const TypingSignature({super.key});
@@ -26,9 +27,12 @@ class _TypingSignatureState extends State<TypingSignature> {
 
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
-
-      // context.go(AppRouter.kHomeView);
-      context.go(AppRouter.kAuthView);
+      final session = Supabase.instance.client.auth.currentSession;
+      if (session != null) {
+        context.go(AppRouter.kHomeView);
+      } else {
+        context.go(AppRouter.kAuthView);
+      }
     });
   }
 

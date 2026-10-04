@@ -3,8 +3,13 @@ import 'package:falcon_gym/features/auth/presentation/views/widgets/member_categ
 import 'package:flutter/material.dart';
 
 class MemberCategorySection extends StatelessWidget {
-  const MemberCategorySection({super.key});
-
+  const MemberCategorySection({
+    super.key,
+    this.memberType = 'Civilian',
+    required this.onChanged,
+  });
+  final String memberType;
+  final void Function(String) onChanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +27,7 @@ class MemberCategorySection extends StatelessWidget {
           style: Styless.textStyle12.copyWith(color: const Color(0xFF929DA1)),
         ),
         const SizedBox(height: 10),
-        MemberCategoryColumn(),
+        MemberCategoryColumn(onChanged: onChanged, memberType: memberType),
       ],
     );
   }

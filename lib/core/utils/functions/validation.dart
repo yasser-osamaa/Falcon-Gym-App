@@ -23,3 +23,25 @@ String? passwordValidator(String? value) {
 
   return null;
 }
+
+String? nameValidator(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return 'Please enter your name';
+  }
+  if (value.trim().length < 3) {
+    return 'Name must be at least 3 characters';
+  }
+  return null;
+}
+
+String? phoneValidator(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return 'Please enter your phone number';
+  }
+  final phone = value.trim();
+  final phoneRegex = RegExp(r'^01[0125][0-9]{8}$');
+  if (!phoneRegex.hasMatch(phone)) {
+    return 'Please enter a valid Egyptian phone number';
+  }
+  return null;
+}

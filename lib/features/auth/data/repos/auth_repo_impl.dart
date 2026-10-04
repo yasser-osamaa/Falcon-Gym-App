@@ -12,7 +12,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<UserEntity> registreNewUser({
+  Future<UserEntity> registerNewUser({
     required String email,
     required String password,
     required String name,

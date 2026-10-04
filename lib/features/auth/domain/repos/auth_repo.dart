@@ -6,7 +6,7 @@ abstract class AuthRepo {
     required String password,
   });
 
-  Future<UserEntity> registreNewUser({
+  Future<UserEntity> registerNewUser({
     required String email,
     required String password,
     required String name,

@@ -1,7 +1,9 @@
+import 'package:falcon_gym/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:falcon_gym/features/profile/presentation/views/widgets/custome_button_with_icon.dart';
 import 'package:falcon_gym/features/profile/presentation/views/widgets/member_data_section.dart';
 import 'package:falcon_gym/features/profile/presentation/views/widgets/menu_items_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileViewBody extends StatelessWidget {
@@ -21,7 +23,8 @@ class ProfileViewBody extends StatelessWidget {
               MenuItemsSections(),
               const SizedBox(height: 13),
               CustomButtonWithIcon(
-                onTap: () {
+                onTap: () async {
+                  await context.read<AuthCubit>().signout();
                   context.go('/');
                 },
               ),
