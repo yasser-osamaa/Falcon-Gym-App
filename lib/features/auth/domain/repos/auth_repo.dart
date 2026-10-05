@@ -16,7 +16,7 @@ abstract class AuthRepo {
     required String type,
   });
 
-  Future<void> logOutUser();
+  Future<Either<Failure, void>> logOutUser();
 
   Future<Either<Failure, UserEntity>> fetchUserData();
 }

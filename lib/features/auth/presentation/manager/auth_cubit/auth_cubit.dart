@@ -52,12 +52,15 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signout() async {
     emit(AuthLoading());
 
-    try {
-      await authRepo.logOutUser();
-      emit(AuthSuccess());
-    } catch (e) {
-      emit(AuthFailure(error: e.toString()));
-    }
+    final result = await authRepo.logOutUser();
+    result.fold(
+      (error) {
+        emit(AuthFailure(error: error.error));
+      },
+      (_) {
+        emit(AuthSuccess());
+      },
+    );
   }
 
   Future<void> getUser() async {

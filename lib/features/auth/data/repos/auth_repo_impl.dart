@@ -10,8 +10,13 @@ class AuthRepoImpl implements AuthRepo {
 
   AuthRepoImpl({required this.authRemoteDataSource});
   @override
-  Future<void> logOutUser() {
-    return authRemoteDataSource.logOutUser();
+  Future<Either<Failure, void>> logOutUser() async {
+    try {
+      await authRemoteDataSource.logOutUser();
+      return right(null);
+    } catch (e) {
+      return left(SupabaseFailure.fromException(e));
+    }
   }
 
   @override
