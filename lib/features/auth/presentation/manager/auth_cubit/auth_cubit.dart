@@ -11,12 +11,16 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signIn({required String email, required String password}) async {
     emit(AuthLoading());
-    try {
-      final user = await authRepo.signInUser(email: email, password: password);
-      emit(AuthSuccess(userEntity: user));
-    } catch (e) {
-      emit(AuthFailure(error: e.toString()));
-    }
+
+    final user = await authRepo.signInUser(email: email, password: password);
+    user.fold(
+      (error) {
+        emit(AuthFailure(error: error.error));
+      },
+      (userEntity) {
+        emit(AuthSuccess(userEntity: userEntity));
+      },
+    );
   }
 
   Future<void> register({
@@ -28,18 +32,21 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     emit(AuthLoading());
 
-    try {
-      final user = await authRepo.registerNewUser(
-        email: email,
-        password: password,
-        name: name,
-        type: type,
-        phone: phone,
-      );
-      emit(AuthSuccess(userEntity: user));
-    } catch (e) {
-      emit(AuthFailure(error: e.toString()));
-    }
+    final user = await authRepo.registerNewUser(
+      email: email,
+      password: password,
+      name: name,
+      type: type,
+      phone: phone,
+    );
+    user.fold(
+      (error) {
+        emit(AuthFailure(error: error.error));
+      },
+      (userEntity) {
+        emit(AuthSuccess(userEntity: userEntity));
+      },
+    );
   }
 
   Future<void> signout() async {
@@ -54,11 +61,14 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> getUser() async {
-    try {
-      final user = await authRepo.fetchUserData();
-      emit(AuthSuccess(userEntity: user));
-    } catch (e) {
-      emit(AuthFailure(error: e.toString()));
-    }
+    final user = await authRepo.fetchUserData();
+    user.fold(
+      (error) {
+        emit(AuthFailure(error: error.error));
+      },
+      (userEntity) {
+        emit(AuthSuccess(userEntity: userEntity));
+      },
+    );
   }
 }

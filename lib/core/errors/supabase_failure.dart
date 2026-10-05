@@ -25,11 +25,20 @@ class SupabaseFailure extends Failure {
         return SupabaseFailure(error: exception.toString());
     }
   }
-
   static String _authMessage(AuthException exception) {
-    switch (exception.statusCode) {
-      case '400':
-        return exception.message;
+    switch (exception.code) {
+      case 'user_already_exists':
+        return 'This email is already registered. Please sign in instead.';
+
+      case 'email_not_confirmed':
+        return 'Please confirm your email before signing in.';
+
+      case 'invalid_credentials':
+        return 'Incorrect email or password.';
+
+      case 'weak_password':
+        return 'Your password is too weak. Please choose a stronger password.';
+
       default:
         return 'Authentication failed. Please try again.';
     }
