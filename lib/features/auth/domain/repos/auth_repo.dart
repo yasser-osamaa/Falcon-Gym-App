@@ -15,4 +15,6 @@ abstract class AuthRepo {
   });
 
   Future<void> logOutUser();
+
+  Future<UserEntity> fetchUserData();
 }

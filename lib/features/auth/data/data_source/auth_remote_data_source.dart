@@ -17,6 +17,8 @@ abstract class AuthRemoteDataSource {
   });
 
   Future<void> logOutUser();
+
+  Future<UserEntity> fetchUserData();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -82,6 +84,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .eq('id', user.id)
         .single();
 
+    return UserModel.fromJson(profile).toEntity();
+  }
+
+  @override
+  Future<UserEntity> fetchUserData() async {
+    final session = supaBase.auth.currentSession;
+
+    if (session == null) {
+      throw Exception('No active session');
+    }
+
+    final id = session.user.id;
+    final profile = await supaBase
+        .from('profile')
+        .select()
+        .eq('id', id)
+        .single();
     return UserModel.fromJson(profile).toEntity();
   }
 }

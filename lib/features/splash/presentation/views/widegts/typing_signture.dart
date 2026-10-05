@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:falcon_gym/core/utils/app_router.dart';
+import 'package:falcon_gym/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -25,10 +27,14 @@ class _TypingSignatureState extends State<TypingSignature> {
       if (_visibleLetters == _name.length) timer.cancel();
     });
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () async {
       if (!mounted) return;
+
       final session = Supabase.instance.client.auth.currentSession;
       if (session != null) {
+        await context.read<AuthCubit>().getUser();
+
+        if (!mounted) return;
         context.go(AppRouter.kHomeView);
       } else {
         context.go(AppRouter.kAuthView);

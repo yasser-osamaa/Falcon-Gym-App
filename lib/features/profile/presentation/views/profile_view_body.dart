@@ -22,10 +22,17 @@ class ProfileViewBody extends StatelessWidget {
               const SizedBox(height: 16),
               MenuItemsSections(),
               const SizedBox(height: 13),
-              CustomButtonWithIcon(
-                onTap: () async {
-                  await context.read<AuthCubit>().signout();
-                  context.go('/');
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  return CustomButtonWithIcon(
+                    isLoading: state is AuthLoading,
+                    onTap: () async {
+                      await context.read<AuthCubit>().signout();
+
+                      if (!context.mounted) return;
+                      context.go('/');
+                    },
+                  );
                 },
               ),
             ],

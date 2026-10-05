@@ -130,6 +130,7 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                       ),
                       const SizedBox(height: 14),
                       CustomAuthButton(
+                        isLoading: (state is AuthLoading),
                         label: 'Create my account',
                         onTap: (state is AuthLoading)
                             ? null

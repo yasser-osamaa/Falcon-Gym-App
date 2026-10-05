@@ -52,4 +52,13 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(error: e.toString()));
     }
   }
+
+  Future<void> getUser() async {
+    try {
+      final user = await authRepo.fetchUserData();
+      emit(AuthSuccess(userEntity: user));
+    } catch (e) {
+      emit(AuthFailure(error: e.toString()));
+    }
+  }
 }

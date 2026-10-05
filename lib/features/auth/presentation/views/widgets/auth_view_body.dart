@@ -116,6 +116,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                       ),
                       const SizedBox(height: 14),
                       CustomAuthButton(
+                        isLoading: (state is AuthLoading),
                         onTap: (state is AuthLoading)
                             ? null
                             : () async {

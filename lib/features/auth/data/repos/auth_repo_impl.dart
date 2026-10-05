@@ -35,4 +35,9 @@ class AuthRepoImpl implements AuthRepo {
   }) {
     return authRemoteDataSource.signInUser(email: email, password: password);
   }
+
+  @override
+  Future<UserEntity> fetchUserData() {
+    return authRemoteDataSource.fetchUserData();
+  }
 }
