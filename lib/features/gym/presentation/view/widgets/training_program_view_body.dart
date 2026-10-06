@@ -23,22 +23,18 @@ class TrainingProgramViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-
           Text(
             '$title Workout',
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
-
           const SizedBox(height: 5),
-
           Text(
             subtitle,
             style: Styless.textStyle15.copyWith(color: Colors.grey),
           ),
-
           const SizedBox(height: 20),
-
           Expanded(child: ExerciseCardListView(exercises: exercises)),
+          const SizedBox(height: 20),
         ],
       ),
     );
