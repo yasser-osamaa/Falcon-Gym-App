@@ -19,7 +19,7 @@ class HomeViewBody extends StatelessWidget {
             WelcomeCard(),
             SizedBox(height: 20),
             BookAndGymRawCards(),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             UpComingBookingSection(),
             SizedBox(height: 20),
             PopularActivitySection(),
