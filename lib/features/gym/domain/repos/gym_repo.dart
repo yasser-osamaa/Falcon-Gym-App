@@ -4,6 +4,6 @@ import 'package:falcon_gym/features/gym/domain/entities/gym_exercises_entity.dar
 
 abstract class GymRepo {
   Future<Either<Failure, List<GymExercisesEntity>>> fetchExercises({
-    required int exerciseId,
+    required int categoryId,
   });
 }
