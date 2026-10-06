@@ -2,6 +2,8 @@ import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/service_locator.dart';
 import 'package:falcon_gym/features/auth/domain/repos/auth_repo.dart';
 import 'package:falcon_gym/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:falcon_gym/features/gym/domain/repos/gym_repo.dart';
+import 'package:falcon_gym/features/gym/presentation/view/manager/cubit/gym_exercises_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,8 +25,15 @@ class FalconGym extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(authRepo: getIt.get<AuthRepo>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(authRepo: getIt.get<AuthRepo>()),
+        ),
+        BlocProvider(
+          create: (context) => GymExercisesCubit(gymRepo: getIt.get<GymRepo>()),
+        ),
+      ],
       child: MaterialApp.router(
         title: 'Falcon Gym',
         debugShowCheckedModeBanner: false,

@@ -1,6 +1,8 @@
 import 'package:falcon_gym/core/utils/app_router.dart';
+import 'package:falcon_gym/features/gym/presentation/view/manager/cubit/gym_exercises_cubit.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/training_program_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class TrainingProgramsSection extends StatelessWidget {
@@ -12,6 +14,8 @@ class TrainingProgramsSection extends StatelessWidget {
       children: [
         TrainingProgramCard(
           onTap: () {
+            context.read<GymExercisesCubit>().fetchExercises(categoryId: 1);
+
             context.push(AppRouter.kPushView);
           },
           number: '01',
@@ -23,6 +27,8 @@ class TrainingProgramsSection extends StatelessWidget {
         SizedBox(height: 8),
         TrainingProgramCard(
           onTap: () {
+            context.read<GymExercisesCubit>().fetchExercises(categoryId: 2);
+
             context.push(AppRouter.kPullView);
           },
           number: '02',
@@ -34,6 +40,8 @@ class TrainingProgramsSection extends StatelessWidget {
         SizedBox(height: 8),
         TrainingProgramCard(
           onTap: () {
+            context.read<GymExercisesCubit>().fetchExercises(categoryId: 3);
+
             context.push(AppRouter.kLegView);
           },
           number: '03',

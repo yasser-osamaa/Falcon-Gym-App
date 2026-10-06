@@ -110,48 +110,6 @@ abstract class AppRouter {
       ),
 
       GoRoute(
-        path: kAuthView,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            child: const AuthView(),
-            transitionDuration: const Duration(milliseconds: 300),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-          );
-        },
-      ),
-
-      GoRoute(
-        path: kHelpView,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            child: const HelpView(),
-            transitionDuration: const Duration(milliseconds: 300),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-          );
-        },
-      ),
-
-      GoRoute(
-        path: kTermsView,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            child: const TermsView(),
-            transitionDuration: const Duration(milliseconds: 300),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-          );
-        },
-      ),
-
-      GoRoute(
         path: kPushView,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
@@ -184,6 +142,48 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             child: const LegDayViewBody(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kAuthView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const AuthView(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kHelpView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const HelpView(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kTermsView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const TermsView(),
             transitionDuration: const Duration(milliseconds: 300),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
