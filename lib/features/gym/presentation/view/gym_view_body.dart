@@ -15,7 +15,7 @@ class GymViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 20),
-          Center(child: Text('My Bookings', style: Styless.textStyle19)),
+          Center(child: Text('Gym Plans', style: Styless.textStyle19)),
           SizedBox(height: 20),
           Expanded(
             child: ListView(
