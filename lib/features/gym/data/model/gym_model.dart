@@ -14,10 +14,10 @@ class GymModel extends GymExercisesEntity {
   factory GymModel.fromJson(Map<String, dynamic> json) {
     return GymModel(
       id: json['id'],
-      categoryId: json['categoryId'],
+      categoryId: json['category_id'],
       name: json['name'],
       description: json['description'],
-      imageUrl: json['imageUrl'],
+      imageUrl: json['image_url'],
       sets: json['sets'],
       reps: json['reps'],
     );
