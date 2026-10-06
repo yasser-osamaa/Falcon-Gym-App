@@ -1,3 +1,4 @@
+import 'package:falcon_gym/features/gym/domain/entities/gym_exercises_entity.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/training_program_view_body.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class TrainingProgramView extends StatelessWidget {
   });
   final String title;
   final String subtitle;
-  final List<WorkoutExercise> exercises;
+  final List<GymExercisesEntity> exercises;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,18 +35,4 @@ class TrainingProgramView extends StatelessWidget {
       ),
     );
   }
-}
-
-class WorkoutExercise {
-  const WorkoutExercise({
-    required this.name,
-    required this.muscle,
-    required this.sets,
-    required this.reps,
-  });
-
-  final String name;
-  final String muscle;
-  final int sets;
-  final String reps;
 }

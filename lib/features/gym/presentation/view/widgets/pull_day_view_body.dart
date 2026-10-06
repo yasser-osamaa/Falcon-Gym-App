@@ -1,46 +1,40 @@
+import 'package:falcon_gym/core/widgets/error_view.dart';
+import 'package:falcon_gym/core/widgets/exercise_card_shimmer.dart';
+import 'package:falcon_gym/features/gym/presentation/view/manager/cubit/gym_exercises_cubit.dart';
 import 'package:falcon_gym/features/gym/presentation/view/training_program_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PullDayViewBody extends StatelessWidget {
   const PullDayViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TrainingProgramView(
-      title: 'Pull Day',
-      subtitle: 'Back • Biceps • Rear Delts',
-      exercises: [
-        WorkoutExercise(
-          name: 'Lat Pulldown',
-          muscle: 'Back',
-          sets: 4,
-          reps: '8-12',
-        ),
-        WorkoutExercise(
-          name: 'Seated Cable Row',
-          muscle: 'Back',
-          sets: 3,
-          reps: '8-12',
-        ),
-        WorkoutExercise(
-          name: 'Dumbbell Row',
-          muscle: 'Back',
-          sets: 3,
-          reps: '10-12',
-        ),
-        WorkoutExercise(
-          name: 'Face Pull',
-          muscle: 'Rear Delts',
-          sets: 3,
-          reps: '12-15',
-        ),
-        WorkoutExercise(
-          name: 'Barbell Curl',
-          muscle: 'Biceps',
-          sets: 3,
-          reps: '8-12',
-        ),
-      ],
+    return BlocBuilder<GymExercisesCubit, GymExercisesState>(
+      builder: (context, state) {
+        if (state is GymExercisesSuccess) {
+          return TrainingProgramView(
+            title: 'Pull Day',
+            subtitle: 'Back • Biceps • Rear Delts',
+            exercises: state.gymExercises,
+          );
+        } else if (state is GymExercisesFailure) {
+          return Scaffold(
+            body: ErrorView(title: state.errorText, icon: Icons.error),
+          );
+        }
+        return Scaffold(
+          body: ListView.separated(
+            padding: const EdgeInsets.all(20),
+            itemBuilder: (context, index) {
+              return const ExerciseCardShimmer();
+            },
+            separatorBuilder: (_, _) => const SizedBox(height: 20),
+
+            itemCount: 4,
+          ),
+        );
+      },
     );
   }
 }

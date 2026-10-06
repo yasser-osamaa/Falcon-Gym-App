@@ -1,47 +1,40 @@
+import 'package:falcon_gym/core/widgets/error_view.dart';
+import 'package:falcon_gym/core/widgets/exercise_card_shimmer.dart';
+import 'package:falcon_gym/features/gym/presentation/view/manager/cubit/gym_exercises_cubit.dart';
 import 'package:falcon_gym/features/gym/presentation/view/training_program_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LegDayViewBody extends StatelessWidget {
   const LegDayViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TrainingProgramView(
-      title: 'Leg Day',
-      subtitle: 'Quads • Hamstrings • Glutes • Calves',
-      exercises: [
-        WorkoutExercise(name: 'Squat', muscle: 'Quads', sets: 4, reps: '8-12'),
-        WorkoutExercise(
-          name: 'Leg Press',
-          muscle: 'Quads',
-          sets: 3,
-          reps: '10-12',
-        ),
-        WorkoutExercise(
-          name: 'Romanian Deadlift',
-          muscle: 'Hamstrings',
-          sets: 3,
-          reps: '8-12',
-        ),
-        WorkoutExercise(
-          name: 'Leg Extension',
-          muscle: 'Quads',
-          sets: 3,
-          reps: '12-15',
-        ),
-        WorkoutExercise(
-          name: 'Leg Curl',
-          muscle: 'Hamstrings',
-          sets: 3,
-          reps: '10-15',
-        ),
-        WorkoutExercise(
-          name: 'Calf Raise',
-          muscle: 'Calves',
-          sets: 4,
-          reps: '12-15',
-        ),
-      ],
+    return BlocBuilder<GymExercisesCubit, GymExercisesState>(
+      builder: (context, state) {
+        if (state is GymExercisesSuccess) {
+          return TrainingProgramView(
+            title: 'Leg Day',
+            subtitle: 'Quads • Hamstrings • Glutes • Calves',
+            exercises: state.gymExercises,
+          );
+        } else if (state is GymExercisesFailure) {
+          return Scaffold(
+            body: ErrorView(title: state.errorText, icon: Icons.error),
+          );
+        }
+        return Scaffold(
+          body: ListView.separated(
+            padding: const EdgeInsets.all(20),
+            itemBuilder: (context, index) {
+              return const ExerciseCardShimmer();
+            },
+            separatorBuilder: (_, _) => const SizedBox(height: 20),
+
+            itemCount: 4,
+          ),
+        );
+      },
     );
   }
 }
