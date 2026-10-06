@@ -36,6 +36,7 @@ class _BookingsHistoryViewBodyState extends State<BookingsHistoryViewBody> {
                   ? const HistoryCard()
                   : const NoUpcomingBookings(),
             ),
+            SizedBox(height: 70),
           ],
         ),
       ),

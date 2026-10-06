@@ -40,6 +40,7 @@ class GymViewBody extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 TrainingProgramsSection(),
+                SizedBox(height: 50),
               ],
             ),
           ),

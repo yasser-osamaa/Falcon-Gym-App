@@ -23,7 +23,7 @@ class HomeViewBody extends StatelessWidget {
             UpComingBookingSection(),
             SizedBox(height: 20),
             PopularActivitySection(),
-            SizedBox(height: 15),
+            SizedBox(height: 70),
           ],
         ),
       ),
