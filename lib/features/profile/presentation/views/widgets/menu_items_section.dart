@@ -26,6 +26,10 @@ class MenuItemsSections extends StatelessWidget {
             title: 'My Membership',
           ),
           ProfileMenuItem(
+            icon: Icons.password_rounded,
+            title: 'Change Password',
+          ),
+          ProfileMenuItem(
             icon: Icons.help_outline,
             title: 'Help & Support',
             onTap: () {
