@@ -42,7 +42,7 @@ class PopularActivitesCard extends StatelessWidget {
                 subTitle,
                 style: Styless.textStyle12.copyWith(
                   color: Color(0xff707B80),
-                  fontSize: 9,
+                  fontWeight: FontWeight.w500,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

@@ -36,7 +36,8 @@ class FalconGym extends StatelessWidget {
           create: (context) => GymExercisesCubit(gymRepo: getIt.get<GymRepo>()),
         ),
         BlocProvider(
-          create: (context) => SportsCubit(sportsRepo: getIt.get<SportsRepo>()),
+          create: (context) =>
+              SportsCubit(sportsRepo: getIt.get<SportsRepo>())..getSports(),
         ),
       ],
       child: MaterialApp.router(
