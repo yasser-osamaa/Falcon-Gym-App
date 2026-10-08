@@ -13,7 +13,7 @@ class SportsCubit extends Cubit<SportsState> {
     final sports = await sportsRepo.fetchSports();
     sports.fold(
       (error) {
-        emit(SportsFailure(errorText: error.error));
+        emit(SportsFailure(errorText: error.errorMessage));
       },
       (listSports) {
         emit(SportsSuccess(sports: listSports));

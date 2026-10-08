@@ -14,7 +14,7 @@ class SportScheduleCubit extends Cubit<SportScheduleState> {
 
     schedules.fold(
       (error) {
-        emit(SportScheduleFailure(errText: error.error));
+        emit(SportScheduleFailure(errText: error.errorMessage));
       },
       (schedules) {
         emit(SportScheduleSuccess(sportSchedule: schedules));

@@ -13,7 +13,7 @@ class GymExercisesCubit extends Cubit<GymExercisesState> {
     final data = await gymRepo.fetchExercises(categoryId: categoryId);
     data.fold(
       (err) {
-        emit(GymExercisesFailure(errorText: err.error));
+        emit(GymExercisesFailure(errorText: err.errorMessage));
       },
       (list) {
         emit(GymExercisesSuccess(gymExercises: list));

@@ -4,25 +4,26 @@ import 'package:falcon_gym/core/errors/failure.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseFailure extends Failure {
-  SupabaseFailure({required super.error});
+  SupabaseFailure({required super.errorMessage});
   factory SupabaseFailure.fromException(Object exception) {
     switch (exception) {
       case AuthException():
-        return SupabaseFailure(error: _authMessage(exception));
+        return SupabaseFailure(errorMessage: _authMessage(exception));
 
       case PostgrestException():
-        return SupabaseFailure(error: _postgrestMessage(exception));
+        return SupabaseFailure(errorMessage: _postgrestMessage(exception));
 
       case StorageException():
-        return SupabaseFailure(error: _storageMessage(exception));
+        return SupabaseFailure(errorMessage: _storageMessage(exception));
 
       case SocketException():
         return SupabaseFailure(
-          error: 'Could not connect. Please check your internet connection.',
+          errorMessage:
+              'Could not connect. Please check your internet connection.',
         );
 
       default:
-        return SupabaseFailure(error: exception.toString());
+        return SupabaseFailure(errorMessage: exception.toString());
     }
   }
   static String _authMessage(AuthException exception) {

@@ -15,7 +15,7 @@ class AuthCubit extends Cubit<AuthState> {
     final user = await authRepo.signInUser(email: email, password: password);
     user.fold(
       (error) {
-        emit(AuthFailure(error: error.error));
+        emit(AuthFailure(error: error.errorMessage));
       },
       (userEntity) {
         emit(AuthSuccess(userEntity: userEntity));
@@ -41,7 +41,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
     user.fold(
       (error) {
-        emit(AuthFailure(error: error.error));
+        emit(AuthFailure(error: error.errorMessage));
       },
       (userEntity) {
         emit(AuthSuccess(userEntity: userEntity));
@@ -55,7 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await authRepo.logOutUser();
     result.fold(
       (error) {
-        emit(AuthFailure(error: error.error));
+        emit(AuthFailure(error: error.errorMessage));
       },
       (_) {
         emit(AuthSuccess());
@@ -67,7 +67,7 @@ class AuthCubit extends Cubit<AuthState> {
     final user = await authRepo.fetchUserData();
     user.fold(
       (error) {
-        emit(AuthFailure(error: error.error));
+        emit(AuthFailure(error: error.errorMessage));
       },
       (userEntity) {
         emit(AuthSuccess(userEntity: userEntity));
