@@ -5,6 +5,7 @@ import 'package:falcon_gym/features/gym/presentation/view/gym_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/leg_day_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/pull_day_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/push_day_view_body.dart';
+import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_view.dart';
 import 'package:falcon_gym/features/home/presentation/views/home_view.dart';
@@ -98,8 +99,9 @@ abstract class AppRouter {
       GoRoute(
         path: kBookDetailesView,
         pageBuilder: (context, state) {
+          final sport = state.extra as SportEntity;
           return CustomTransitionPage(
-            child: const BookDetailesView(),
+            child: BookDetailesView(sportEntity: sport),
             transitionDuration: const Duration(milliseconds: 300),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {

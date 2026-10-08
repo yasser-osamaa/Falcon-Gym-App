@@ -1,9 +1,10 @@
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:flutter/material.dart';
 
 class TextsHeaderColumn extends StatelessWidget {
-  const TextsHeaderColumn({super.key});
-
+  const TextsHeaderColumn({super.key, required this.sportEntity});
+  final SportEntity sportEntity;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +20,7 @@ class TextsHeaderColumn extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          'Padel',
+          sportEntity.name,
           style: Styless.textStyle30.copyWith(
             fontSize: 30,
             fontStyle: FontStyle.normal,
@@ -29,7 +30,7 @@ class TextsHeaderColumn extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          'EGP 300 / hour',
+          'EGP ${sportEntity.pricePerHour} / hour',
           style: Styless.textStyle12.copyWith(color: Colors.white),
         ),
       ],

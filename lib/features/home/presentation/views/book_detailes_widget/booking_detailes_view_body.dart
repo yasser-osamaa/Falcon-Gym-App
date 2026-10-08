@@ -1,3 +1,4 @@
+import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:flutter/material.dart';
 
 import 'booking_date_section.dart';
@@ -6,8 +7,8 @@ import 'booking_summary_footer.dart';
 import 'booking_time_section.dart';
 
 class BookDetailesViewBody extends StatefulWidget {
-  const BookDetailesViewBody({super.key});
-
+  const BookDetailesViewBody({super.key, required this.sportEntity});
+  final SportEntity sportEntity;
   @override
   State<BookDetailesViewBody> createState() => _BookDetailesViewBodyState();
 }
@@ -29,7 +30,9 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                 child: CustomScrollView(
                   physics: const BouncingScrollPhysics(),
                   slivers: [
-                    SliverToBoxAdapter(child: BookingHeader()),
+                    SliverToBoxAdapter(
+                      child: BookingHeader(sportEntity: widget.sportEntity),
+                    ),
                     SliverPadding(
                       padding: const EdgeInsets.fromLTRB(28, 18, 28, 24),
                       sliver: SliverToBoxAdapter(

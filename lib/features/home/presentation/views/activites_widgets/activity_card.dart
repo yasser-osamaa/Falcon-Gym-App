@@ -18,7 +18,7 @@ class ActivityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(AppRouter.kBookDetailesView);
+        context.push(AppRouter.kBookDetailesView, extra: sportEntity);
       },
       child: Container(
         height: MediaQuery.sizeOf(context).height * .12,

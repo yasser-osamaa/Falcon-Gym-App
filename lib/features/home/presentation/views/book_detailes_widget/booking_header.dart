@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_widgets/custom_back_button.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_widget/texts_header_column.dart';
 import 'package:flutter/material.dart';
 
 class BookingHeader extends StatelessWidget {
-  const BookingHeader({super.key});
-
+  const BookingHeader({super.key, required this.sportEntity});
+  final SportEntity sportEntity;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -12,7 +14,7 @@ class BookingHeader extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset('assets/images/padel.jpg', fit: BoxFit.cover),
+          CachedNetworkImage(imageUrl: sportEntity.imageUrl, fit: BoxFit.cover),
           const DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -32,7 +34,7 @@ class BookingHeader extends StatelessWidget {
             left: 28,
             right: 24,
             bottom: 24,
-            child: TextsHeaderColumn(),
+            child: TextsHeaderColumn(sportEntity: sportEntity),
           ),
         ],
       ),

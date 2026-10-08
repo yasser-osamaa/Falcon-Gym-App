@@ -8,11 +8,13 @@ class PopularActivitesCard extends StatelessWidget {
     required this.title,
     required this.subTitle,
     this.onTap,
+    required this.iconData,
   });
   final Color color;
   final String title;
   final String subTitle;
   final void Function()? onTap;
+  final IconData iconData;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,7 +31,7 @@ class PopularActivitesCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.sports_soccer, size: 25),
+              Icon(iconData, size: 25),
               Expanded(child: SizedBox(height: 20)),
               Text(
                 title,
