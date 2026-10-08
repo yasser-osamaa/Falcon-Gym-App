@@ -14,7 +14,7 @@ class BookDetailesViewBody extends StatefulWidget {
 }
 
 class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
-  String _selectedDate = 'Sat 26';
+  DateTime _selectedDate = DateTime.now();
   String _selectedTime = '7:00 PM';
 
   @override
@@ -33,6 +33,7 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                     SliverToBoxAdapter(
                       child: BookingHeader(sportEntity: widget.sportEntity),
                     ),
+
                     SliverPadding(
                       padding: const EdgeInsets.fromLTRB(28, 18, 28, 24),
                       sliver: SliverToBoxAdapter(
@@ -47,15 +48,25 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                                 height: 1.55,
                               ),
                             ),
+
                             const SizedBox(height: 26),
+
                             BookingDateSection(
-                              onDateSelected: (date) =>
-                                  setState(() => _selectedDate = date),
+                              onDateSelected: (date) {
+                                setState(() {
+                                  _selectedDate = date;
+                                });
+                              },
                             ),
+
                             const SizedBox(height: 28),
+
                             BookingTimeSection(
-                              onTimeSelected: (time) =>
-                                  setState(() => _selectedTime = time),
+                              onTimeSelected: (time) {
+                                setState(() {
+                                  _selectedTime = time;
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -64,8 +75,9 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                   ],
                 ),
               ),
+
               BookingSummaryFooter(
-                dateLabel: _selectedDate,
+                dateLabel: _formatDate(_selectedDate),
                 selectedTime: _selectedTime,
               ),
             ],
@@ -73,5 +85,11 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
         ),
       ),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    return '${days[date.weekday - 1]} ${date.day}';
   }
 }

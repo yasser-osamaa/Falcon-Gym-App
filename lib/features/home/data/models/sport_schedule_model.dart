@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class SportScheduleModel extends SportScheduleEntity {
   SportScheduleModel({
     required super.sportId,
-    required super.dayOfWeek,
+    required super.day,
     required super.opensAt,
     required super.closesAt,
   });
   factory SportScheduleModel.fromJson(Map<String, dynamic> json) {
     return SportScheduleModel(
       sportId: json['sport_id'],
-      dayOfWeek: json['day_of_week'],
+      day: json['day_of_week'],
       opensAt: parseTime(json['opens_at']),
       closesAt: parseTime(json['closes_at']),
     );
