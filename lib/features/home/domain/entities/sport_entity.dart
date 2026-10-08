@@ -5,6 +5,7 @@ class SportEntity {
   final int duration;
   final String imageUrl;
   final String color;
+  final bool isActive;
 
   SportEntity({
     required this.id,
@@ -13,5 +14,6 @@ class SportEntity {
     required this.duration,
     required this.imageUrl,
     required this.color,
+    required this.isActive,
   });
 }
