@@ -5,3 +5,4 @@ final Color kMutedColor = Color(0xFF788188);
 
 final String kSupaExercieses = 'exercises';
 final String kSupaSports = 'sports';
+final String kSupaScheduleSports = 'sport_schedule';
