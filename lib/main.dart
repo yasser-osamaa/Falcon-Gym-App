@@ -1,5 +1,6 @@
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/service_locator.dart';
+import 'package:falcon_gym/core/utils/simple_bloc_observer.dart';
 import 'package:falcon_gym/features/auth/domain/repos/auth_repo.dart';
 import 'package:falcon_gym/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:falcon_gym/features/gym/domain/repos/gym_repo.dart';
@@ -20,6 +21,7 @@ void main() async {
   final supabaseKey = dotenv.env['SUPABASE_ANON_KEY']!;
   await Supabase.initialize(url: supabaseUrl, publishableKey: supabaseKey);
   setupLocator();
+  Bloc.observer = SimpleBlocObserver();
 
   runApp(const FalconGym());
 }
