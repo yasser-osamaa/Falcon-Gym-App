@@ -1,8 +1,10 @@
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
+import 'package:falcon_gym/features/home/presentation/manager/sport_schedule_cubit/sport_schedule_cubit.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_widgets/activity_card.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/popular_activity_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class PopularActivityListView extends StatelessWidget {
@@ -24,6 +26,9 @@ class PopularActivityListView extends StatelessWidget {
               subTitle: 'From EGP ${sports[index].pricePerHour}',
               color: Color(int.parse('ff${sports[index].color}', radix: 16)),
               onTap: () {
+                context.read<SportScheduleCubit>().fetchSchedule(
+                  sportId: sports[index].id,
+                );
                 context.push(AppRouter.kBookDetailesView, extra: sports[index]);
               },
               iconData: getSportIcon(sports[index].name),

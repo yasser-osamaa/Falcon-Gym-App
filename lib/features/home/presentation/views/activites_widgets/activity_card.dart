@@ -1,25 +1,23 @@
-import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_widgets/activity_name_with_price_column.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_widgets/container_text_with_border_side.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/icon_card.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ActivityCard extends StatelessWidget {
   const ActivityCard({
     super.key,
     required this.color,
     required this.sportEntity,
+    this.onTap,
   });
   final Color color;
   final SportEntity sportEntity;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        context.push(AppRouter.kBookDetailesView, extra: sportEntity);
-      },
+      onTap: onTap,
       child: Container(
         height: MediaQuery.sizeOf(context).height * .12,
         decoration: BoxDecoration(
