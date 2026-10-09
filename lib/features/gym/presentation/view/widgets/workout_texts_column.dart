@@ -21,7 +21,7 @@ class WorkOutTextColumn extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          'Full Body Strength',
+          'Fat Burning Cardio Workout',
           style: Styless.textStyle19.copyWith(color: Colors.white),
         ),
         const SizedBox(height: 8),
@@ -30,7 +30,7 @@ class WorkOutTextColumn extends StatelessWidget {
             Icon(Icons.access_time, color: Colors.white70, size: 13),
             SizedBox(width: 6),
             Text(
-              '45 min · 8 exercises',
+              '20 min · 5 exercises',
               style: Styless.textStyle12.copyWith(color: Colors.white),
             ),
           ],

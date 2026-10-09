@@ -25,9 +25,9 @@ class GymViewBody extends StatelessWidget {
                 GymIntroCard(),
                 SizedBox(height: 22),
                 HeadingTextsSection(
-                  eyebrow: "TODAY'S TRAINING",
+                  eyebrow: "CARDIO TRAINING",
                   title: 'Ready when you are',
-                  trailing: '3 workouts',
+                  trailing: 'workouts',
                 ),
                 SizedBox(height: 12),
                 WorkoutCard(),
