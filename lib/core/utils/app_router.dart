@@ -2,6 +2,7 @@ import 'package:falcon_gym/core/widgets/main_view.dart';
 import 'package:falcon_gym/features/auth/presentation/views/auth_view.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/bookings_history_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/gym_view_body.dart';
+import 'package:falcon_gym/features/gym/presentation/view/web_view.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/leg_day_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/pull_day_view_body.dart';
 import 'package:falcon_gym/features/gym/presentation/view/widgets/push_day_view_body.dart';
@@ -33,6 +34,8 @@ abstract class AppRouter {
 
   static const String kHelpView = '/HelpView';
   static const String kTermsView = '/TermsView';
+
+  static const String kWebView = '/WebView';
 
   static GoRouter router = GoRouter(
     routes: [
@@ -186,6 +189,20 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             child: const TermsView(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kWebView,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const WebView(),
             transitionDuration: const Duration(milliseconds: 300),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
