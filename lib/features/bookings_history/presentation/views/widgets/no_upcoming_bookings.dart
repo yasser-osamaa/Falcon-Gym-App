@@ -3,13 +3,13 @@ import 'package:falcon_gym/features/home/presentation/views/widgets/icon_card.da
 import 'package:flutter/material.dart';
 
 class NoUpcomingBookings extends StatelessWidget {
-  const NoUpcomingBookings({super.key});
-
+  const NoUpcomingBookings({super.key, this.title = 'UpComing'});
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 50),
+        SizedBox(height: 20),
         IconCard(
           icon: Icons.calendar_month,
           iconSize: 26,
@@ -19,10 +19,10 @@ class NoUpcomingBookings extends StatelessWidget {
           height: 61,
         ),
         SizedBox(height: 30),
-        Text('No Past bookings', style: Styless.textStyle16),
+        Text('No $title bookings', style: Styless.textStyle16),
         SizedBox(height: 10),
         Text(
-          'You don\'t have any Past reservations.',
+          'You don\'t have any $title reservations.',
           style: Styless.textStyle12.copyWith(
             color: Color(0xff828C91),
             fontWeight: FontWeight.w500,

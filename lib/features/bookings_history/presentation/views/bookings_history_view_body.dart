@@ -34,7 +34,7 @@ class _BookingsHistoryViewBodyState extends State<BookingsHistoryViewBody> {
             Center(
               child: isUpcoming
                   ? const HistoryCard()
-                  : const NoUpcomingBookings(),
+                  : const NoUpcomingBookings(title: 'Past'),
             ),
             SizedBox(height: 70),
           ],
