@@ -1,5 +1,5 @@
 import 'package:falcon_gym/core/utils/styless.dart';
-import 'package:falcon_gym/core/widgets/profile_shimmer.dart';
+import 'package:falcon_gym/core/widgets/shimmer/profile_shimmer.dart';
 import 'package:falcon_gym/core/widgets/section_placeholder_view.dart';
 import 'package:falcon_gym/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:falcon_gym/features/profile/presentation/views/widgets/active_member_container.dart';

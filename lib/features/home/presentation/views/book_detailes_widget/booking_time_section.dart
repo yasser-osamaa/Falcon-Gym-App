@@ -1,25 +1,39 @@
+import 'package:falcon_gym/core/utils/functions/generate_time_slot.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/features/home/presentation/views/book_detailes_widget/time_option.dart';
 import 'package:flutter/material.dart';
 
 class BookingTimeSection extends StatefulWidget {
-  const BookingTimeSection({required this.onTimeSelected, super.key});
+  const BookingTimeSection({
+    required this.onTimeSelected,
+    super.key,
+    required this.opensAt,
+    required this.closesAt,
+    required this.duration,
+  });
 
   final ValueChanged<String> onTimeSelected;
-
+  final TimeOfDay opensAt;
+  final TimeOfDay closesAt;
+  final int duration;
   @override
   State<BookingTimeSection> createState() => _BookingTimeSectionState();
 }
 
 class _BookingTimeSectionState extends State<BookingTimeSection> {
-  String _selectedTime = '7:00 PM';
+  late List<TimeOfDay> times;
+  TimeOfDay? _selectedTime;
 
-  static const _times = [
-    ('5:00 PM', true),
-    ('6:00 PM', false),
-    ('7:00 PM', true),
-    ('8:00 PM', true),
-    ('9:00 PM', false),
-  ];
+  @override
+  void initState() {
+    super.initState();
+
+    times = generateTimeSlots(
+      opensAt: widget.opensAt,
+      closesAt: widget.closesAt,
+      duration: widget.duration,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +51,10 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
               ),
             ),
             Text(
-              '1 hour slots',
+              '${widget.duration} min slots',
               style: Styless.textStyle12.copyWith(
                 color: const Color(0xff899398),
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
@@ -50,81 +65,26 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
             spacing: 8,
             runSpacing: 8,
             children: [
-              for (final time in _times)
+              for (final time in times)
                 SizedBox(
                   width: (constraints.maxWidth - 16) / 3,
-                  child: _TimeOption(
-                    time: time.$1,
-                    available: time.$2,
-                    selected: _selectedTime == time.$1,
-                    onTap: time.$2
-                        ? () {
-                            setState(() => _selectedTime = time.$1);
-                            widget.onTimeSelected(time.$1);
-                          }
-                        : null,
+                  child: TimeOption(
+                    time: time.format(context),
+                    available: true,
+                    selected: _selectedTime == time,
+                    onTap: () {
+                      setState(() {
+                        _selectedTime = time;
+                      });
+
+                      widget.onTimeSelected(time.format(context));
+                    },
                   ),
                 ),
             ],
           ),
         ),
       ],
-    );
-  }
-}
-
-class _TimeOption extends StatelessWidget {
-  const _TimeOption({
-    required this.time,
-    required this.available,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final String time;
-  final bool available;
-  final bool selected;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final backgroundColor = selected
-        ? const Color(0xff202e35)
-        : available
-        ? Colors.white
-        : const Color(0xffeef0f0);
-
-    return Material(
-      color: backgroundColor,
-      borderRadius: BorderRadius.circular(11),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(11),
-        child: Container(
-          height: 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(11),
-            border: Border.all(
-              color: selected
-                  ? const Color(0xff202e35)
-                  : const Color(0xffe2e6e7),
-            ),
-          ),
-          child: Text(
-            time,
-            style: Styless.textStyle12.copyWith(
-              color: selected
-                  ? Colors.white
-                  : available
-                  ? const Color(0xff202e35)
-                  : const Color(0xffb8c0c3),
-              fontWeight: FontWeight.w700,
-              decoration: available ? null : TextDecoration.lineThrough,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

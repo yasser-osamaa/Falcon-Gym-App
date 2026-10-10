@@ -1,5 +1,9 @@
+import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/core/widgets/shimmer/booking_time_section_shimmer.dart';
 import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
+import 'package:falcon_gym/features/home/presentation/manager/sport_schedule_cubit/sport_schedule_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'booking_date_section.dart';
 import 'booking_header.dart';
@@ -15,7 +19,7 @@ class BookDetailesViewBody extends StatefulWidget {
 
 class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
   DateTime _selectedDate = DateTime.now();
-  String _selectedTime = '7:00 PM';
+  String? _selectedTime;
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +44,13 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               'Enjoy a private, well-maintained court with quality equipment and everything ready for your game.',
-                              style: TextStyle(
+                              style: Styless.textStyle12.copyWith(
                                 color: Color(0xff657178),
-                                fontSize: 12,
-                                height: 1.55,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-
                             const SizedBox(height: 26),
 
                             BookingDateSection(
@@ -61,11 +63,26 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
 
                             const SizedBox(height: 28),
 
-                            BookingTimeSection(
-                              onTimeSelected: (time) {
-                                setState(() {
-                                  _selectedTime = time;
-                                });
+                            BlocBuilder<SportScheduleCubit, SportScheduleState>(
+                              builder: (context, state) {
+                                if (state is SportScheduleSuccess) {
+                                  final selectedDay = _dayName(_selectedDate);
+                                  final schedule = state.sportSchedule
+                                      .firstWhere(
+                                        (item) => item.day == selectedDay,
+                                      );
+                                  return BookingTimeSection(
+                                    closesAt: schedule.closesAt,
+                                    opensAt: schedule.opensAt,
+                                    duration: widget.sportEntity.duration,
+                                    onTimeSelected: (time) {
+                                      setState(() {
+                                        _selectedTime = time;
+                                      });
+                                    },
+                                  );
+                                }
+                                return BookingTimeSectionShimmer();
                               },
                             ),
                           ],
@@ -78,7 +95,7 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
 
               BookingSummaryFooter(
                 dateLabel: _formatDate(_selectedDate),
-                selectedTime: _selectedTime,
+                selectedTime: _selectedTime ?? 'Choose Time',
               ),
             ],
           ),
@@ -91,5 +108,19 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
     return '${days[date.weekday - 1]} ${date.day}';
+  }
+
+  String _dayName(DateTime date) {
+    const days = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+
+    return days[date.weekday - 1];
   }
 }
