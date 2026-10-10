@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 final Color kPrimaryColor = Color(0xff1D2932);
 final Color kMutedColor = Color(0xFF788188);
 
+final String kSupaProfile = 'profile';
 final String kSupaExercieses = 'exercises';
 final String kSupaSports = 'sports';
 final String kSupaScheduleSports = 'sport_schedule';
+final String kSupaBookings = 'bookings';

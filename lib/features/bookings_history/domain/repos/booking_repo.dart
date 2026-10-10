@@ -14,4 +14,11 @@ abstract class BookingRepo {
     required String startTime,
     required String endTime,
   });
+
+  Future<Either<Failure, List<BookingEntity>>> getBookedSlots({
+    required int sportId,
+    required String bookingDate,
+  });
+
+  Future<Either<Failure, void>> cancelBookings({required String bookingId});
 }
