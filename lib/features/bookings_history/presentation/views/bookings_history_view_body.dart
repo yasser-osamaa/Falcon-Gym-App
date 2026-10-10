@@ -1,8 +1,12 @@
+import 'package:falcon_gym/core/utils/functions/filter_bookings_function.dart';
+import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/history_card.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/no_upcoming_bookings.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/upcoming_toggle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookingsHistoryViewBody extends StatefulWidget {
   const BookingsHistoryViewBody({super.key});
@@ -23,20 +27,64 @@ class _BookingsHistoryViewBodyState extends State<BookingsHistoryViewBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(child: Text('My Bookings', style: Styless.textStyle19)),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             UpcomingToggle(
               isUpcoming: isUpcoming,
-              onChanged: (value) => setState(() => isUpcoming = value),
+              onChanged: (value) {
+                setState(() => isUpcoming = value);
+              },
             ),
-            SizedBox(height: 20),
-            Center(
-              child: isUpcoming
-                  ? const HistoryCard()
-                  : const NoUpcomingBookings(title: 'Past'),
+            const SizedBox(height: 20),
+            Expanded(
+              child: BlocConsumer<BookingCubit, BookingState>(
+                listener: (context, state) {
+                  if (state is BookingFailure) {
+                    showErrorSnackBar(context, state.errText);
+                  }
+
+                  if (state is BookingActionFailure) {
+                    showErrorSnackBar(context, state.errText);
+                  }
+                },
+                builder: (context, state) {
+                  if (state is BookingLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (state is BookingSuccess) {
+                    final bookings = filterBookings(
+                      state.bookings,
+                      upcoming: isUpcoming,
+                    );
+
+                    if (bookings.isEmpty) {
+                      return Center(
+                        child: NoUpcomingBookings(
+                          title: isUpcoming ? 'Upcoming' : 'Past',
+                        ),
+                      );
+                    }
+
+                    return ListView.builder(
+                      itemCount: bookings.length,
+                      itemBuilder: (context, index) {
+                        return HistoryCard(bookingEntity: bookings[index]);
+                      },
+                    );
+                  }
+
+                  if (state is BookingFailure ||
+                      state is BookingActionFailure) {
+                    return const SizedBox.shrink();
+                  }
+
+                  return const Center(child: CircularProgressIndicator());
+                },
+              ),
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 20),
           ],
         ),
       ),

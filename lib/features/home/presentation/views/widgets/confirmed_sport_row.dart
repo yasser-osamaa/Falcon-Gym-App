@@ -1,10 +1,18 @@
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/icon_card.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmedSportRow extends StatelessWidget {
-  const ConfirmedSportRow({super.key, required this.subText});
+  const ConfirmedSportRow({
+    super.key,
+    required this.subText,
+    required this.bookingEntity,
+    required this.sportName,
+  });
   final String subText;
+  final BookingEntity bookingEntity;
+  final String sportName;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,7 +30,7 @@ class ConfirmedSportRow extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Padel',
+              sportName,
               style: Styless.textStyle15.copyWith(fontWeight: FontWeight.w400),
             ),
             SizedBox(height: 3),
