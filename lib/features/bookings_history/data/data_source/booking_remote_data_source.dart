@@ -45,7 +45,12 @@ class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
   @override
   Future<List<BookingEntity>> getBookings({required String userId}) async {
     List<BookingEntity> bookings = [];
-    final data = await supa.from(kSupaBookings).select().eq('user_id', userId);
+    final data = await supa
+        .from(kSupaBookings)
+        .select()
+        .eq('user_id', userId)
+        .order('booking_date', ascending: false)
+        .order('start_time', ascending: false);
 
     for (var element in data) {
       bookings.add(BookingModel.fromJson(element));

@@ -58,7 +58,7 @@ class UpComingBookingSection extends StatelessWidget {
 
             SizedBox(height: 10),
             (state is BookingSuccess && state.bookings.isNotEmpty)
-                ? UpComingSportCard()
+                ? UpComingSportCard(bookingEntity: state.bookings.first)
                 : NoUpcomingBookings(),
           ],
         );

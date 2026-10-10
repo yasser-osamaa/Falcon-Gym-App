@@ -1,8 +1,10 @@
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
 import 'package:flutter/material.dart';
 
 class BookingCodeRow extends StatelessWidget {
-  const BookingCodeRow({super.key});
+  const BookingCodeRow({super.key, required this.bookingEntity});
+  final BookingEntity bookingEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class BookingCodeRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Booking code FG-48291',
+          'Booking code ${bookingEntity.id}',
           style: Styless.textStyle12.copyWith(
             color: Color(0xff657178),
             fontWeight: FontWeight.w700,

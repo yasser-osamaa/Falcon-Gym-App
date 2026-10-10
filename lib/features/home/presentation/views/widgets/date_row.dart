@@ -1,16 +1,19 @@
+import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/small_icon_with_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class DateRaw extends StatelessWidget {
-  const DateRaw({super.key});
+  const DateRaw({super.key, required this.bookingEntity});
+  final BookingEntity bookingEntity;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         SmallIconWithText(
-          text: 'Sat, 26 Apr',
+          text: DateFormat('EEE, dd MMM').format(bookingEntity.bookingDate),
           icon: FaIcon(
             FontAwesomeIcons.calendarCheck,
             size: 16,
