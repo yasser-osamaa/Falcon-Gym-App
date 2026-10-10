@@ -1,6 +1,9 @@
 import 'package:falcon_gym/features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:falcon_gym/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:falcon_gym/features/auth/domain/repos/auth_repo.dart';
+import 'package:falcon_gym/features/bookings_history/data/data_source/booking_remote_data_source.dart';
+import 'package:falcon_gym/features/bookings_history/data/repos/booking_repo_impl.dart';
+import 'package:falcon_gym/features/bookings_history/domain/repos/booking_repo.dart';
 import 'package:falcon_gym/features/gym/data/data_source/gym_remote_data_source.dart';
 import 'package:falcon_gym/features/gym/data/repos/gym_repo_impl.dart';
 import 'package:falcon_gym/features/gym/domain/repos/gym_repo.dart';
@@ -31,5 +34,9 @@ void setupLocator() {
     SportScheduleRepoImpl(
       scheduleRemoteDataSource: SportScheduleRemoteDataSourceImpl(),
     ),
+  );
+
+  getIt.registerSingleton<BookingRepo>(
+    BookingRepoImpl(bookingRemoteDataSource: BookingRemoteDataSourceImpl()),
   );
 }
