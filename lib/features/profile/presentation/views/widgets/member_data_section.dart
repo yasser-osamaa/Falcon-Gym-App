@@ -1,3 +1,4 @@
+import 'package:falcon_gym/core/utils/functions/capital_first_char.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/core/widgets/shimmer/profile_shimmer.dart';
 import 'package:falcon_gym/core/widgets/section_placeholder_view.dart';
@@ -21,14 +22,14 @@ class MemberDataSection extends StatelessWidget {
               NameCircleAvatar(name: state.userEntity!.name),
               const SizedBox(height: 14),
               Text(
-                state.userEntity!.name,
+                capitalizeEachWord(state.userEntity!.name),
                 style: Styless.textStyle19.copyWith(
                   color: const Color(0xff11191D),
                 ),
               ),
               const SizedBox(height: 3),
               Text(
-                '${state.userEntity!.type} Member',
+                '${capitalizeEachWord(state.userEntity!.type)} Member',
                 style: Styless.textStyle12.copyWith(
                   color: const Color(0xff7A8589),
                 ),
