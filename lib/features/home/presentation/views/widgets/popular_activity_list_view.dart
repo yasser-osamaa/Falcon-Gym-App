@@ -1,7 +1,7 @@
 import 'package:falcon_gym/core/utils/app_router.dart';
+import 'package:falcon_gym/core/utils/functions/get_sport_icon.dart';
 import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:falcon_gym/features/home/presentation/manager/sport_schedule_cubit/sport_schedule_cubit.dart';
-import 'package:falcon_gym/features/home/presentation/views/activites_widgets/activity_card.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/popular_activity_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

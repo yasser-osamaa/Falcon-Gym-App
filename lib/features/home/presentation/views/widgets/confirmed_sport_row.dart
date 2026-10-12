@@ -1,3 +1,4 @@
+import 'package:falcon_gym/core/utils/functions/get_sport_icon.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/icon_card.dart';
@@ -21,7 +22,7 @@ class ConfirmedSportRow extends StatelessWidget {
       children: [
         IconCard(
           cardColor: Color(0xffEDF0F0),
-          icon: Icons.sports_soccer,
+          icon: getSportIcon(sportName),
           iconSize: 20,
           width: 40,
           height: 40,

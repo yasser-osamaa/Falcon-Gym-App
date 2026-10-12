@@ -1,3 +1,4 @@
+import 'package:falcon_gym/core/utils/functions/get_sport_icon.dart';
 import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_widgets/activity_name_with_price_column.dart';
 import 'package:falcon_gym/features/home/presentation/views/activites_widgets/container_text_with_border_side.dart';
@@ -51,22 +52,5 @@ class ActivityCard extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-IconData getSportIcon(String name) {
-  switch (name.toLowerCase()) {
-    case 'padel':
-      return Icons.sports_tennis;
-    case 'ping pong':
-      return Icons.sports_tennis;
-    case 'billiards':
-      return Icons.sports_hockey;
-    case 'snooker':
-      return Icons.sports_golf;
-    case 'squash':
-      return Icons.sports_tennis;
-    default:
-      return Icons.sports;
   }
 }
