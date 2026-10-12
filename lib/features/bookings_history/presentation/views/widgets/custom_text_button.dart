@@ -2,8 +2,9 @@ import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget {
-  const CustomTextButton({super.key, this.onPressed});
+  const CustomTextButton({super.key, this.onPressed, required this.text});
   final void Function()? onPressed;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -15,7 +16,7 @@ class CustomTextButton extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Cancel',
+        text,
         style: Styless.textStyle15.copyWith(color: Color(0xffB24C4C)),
       ),
     );

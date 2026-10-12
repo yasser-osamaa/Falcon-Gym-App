@@ -19,7 +19,7 @@ class BookDetailesViewBody extends StatefulWidget {
 
 class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
   DateTime _selectedDate = DateTime.now();
-  String? _selectedTime;
+  TimeOfDay? _selectedTime;
 
   @override
   Widget build(BuildContext context) {
@@ -94,8 +94,10 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
               ),
 
               BookingSummaryFooter(
+                sportEntity: widget.sportEntity,
+                bookingDate: _selectedDate,
                 dateLabel: _formatDate(_selectedDate),
-                selectedTime: _selectedTime ?? 'Choose Time',
+                selectedTime: _selectedTime,
               ),
             ],
           ),

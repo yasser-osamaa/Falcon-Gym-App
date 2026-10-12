@@ -1,5 +1,7 @@
+import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/custom_text_button.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/date_container_row.dart';
 import 'package:falcon_gym/features/home/presentation/manager/sports_cubit/sports_cubit.dart';
@@ -57,11 +59,13 @@ class HistoryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Booking code ${bookingEntity.id}',
+                      'Booking code ${bookingEntity.id.substring(0, 8)}',
                       style: Styless.textStyle12.copyWith(
                         color: const Color(0xff657178),
                         fontWeight: FontWeight.w700,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       sport == null ? '--' : '${sport.pricePerHour} EGP/hour',
@@ -76,7 +80,31 @@ class HistoryCard extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width,
                   height: 45,
-                  child: CustomTextButton(),
+                  child: BlocConsumer<BookingCubit, BookingState>(
+                    listener: (context, state) {
+                      if (state is BookingActionSuccess) {
+                        context.read<BookingCubit>().getBookings(
+                          userId: bookingEntity.userId,
+                        );
+                      }
+                      if (state is BookingActionFailure) {
+                        showErrorSnackBar(context, state.errText);
+                      }
+                    },
+                    builder: (context, state) {
+                      final isLoading = state is BookingActionLoading;
+                      return CustomTextButton(
+                        text: isLoading ? 'Canceling...' : 'Cancel',
+                        onPressed: isLoading
+                            ? null
+                            : () {
+                                context.read<BookingCubit>().cancelBooking(
+                                  bookingId: bookingEntity.id,
+                                );
+                              },
+                      );
+                    },
+                  ),
                 ),
                 const SizedBox(height: 20),
               ],
