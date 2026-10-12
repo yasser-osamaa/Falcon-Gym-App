@@ -1,4 +1,5 @@
 import 'package:falcon_gym/core/utils/functions/generate_time_slot.dart';
+import 'package:falcon_gym/core/utils/functions/is_expired_slot.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_widget/time_option.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
-    final isToday = _isSameDay(widget.selectedDate, now);
+    final isToday = isSameDay(widget.selectedDate, now);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,9 +95,22 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
                   width: (constraints.maxWidth - 16) / 3,
                   child: TimeOption(
                     time: time.format(context),
-                    available: !_isExpiredSlot(time, now, isToday),
+                    available: !isExpiredSlot(
+                      time,
+                      now,
+                      isToday,
+                      widget.selectedDate,
+                      widget.duration,
+                    ),
                     selected: _selectedTime == time,
-                    onTap: _isExpiredSlot(time, now, isToday)
+                    onTap:
+                        isExpiredSlot(
+                          time,
+                          now,
+                          isToday,
+                          widget.selectedDate,
+                          widget.duration,
+                        )
                         ? null
                         : () {
                             setState(() {
@@ -112,25 +126,5 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
         ),
       ],
     );
-  }
-
-  bool _isExpiredSlot(TimeOfDay time, DateTime now, bool isToday) {
-    if (!isToday) {
-      return false;
-    }
-
-    final slotEnd = DateTime(
-      widget.selectedDate.year,
-      widget.selectedDate.month,
-      widget.selectedDate.day,
-      time.hour,
-      time.minute,
-    ).add(Duration(minutes: widget.duration));
-
-    return !slotEnd.isAfter(now);
-  }
-
-  bool _isSameDay(DateTime a, DateTime b) {
-    return a.year == b.year && a.month == b.month && a.day == b.day;
   }
 }
