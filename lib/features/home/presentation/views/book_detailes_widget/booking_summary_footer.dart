@@ -1,16 +1,21 @@
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:falcon_gym/features/home/presentation/views/book_detailes_widget/confirmation_booking_button.dart';
 import 'package:flutter/material.dart';
 
 class BookingSummaryFooter extends StatelessWidget {
   const BookingSummaryFooter({
+    required this.sportEntity,
+    required this.bookingDate,
     required this.dateLabel,
     required this.selectedTime,
     super.key,
   });
 
+  final SportEntity sportEntity;
+  final DateTime bookingDate;
   final String dateLabel;
-  final String selectedTime;
+  final TimeOfDay? selectedTime;
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +43,14 @@ class BookingSummaryFooter extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Padel · 1 Hour',
+                        '${sportEntity.name} · ${sportEntity.duration} min',
                         style: Styless.textStyle12.copyWith(
                           color: const Color(0xff778187),
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '$dateLabel, $selectedTime',
+                        '$dateLabel, ${selectedTime?.format(context) ?? 'Choose Time'}',
                         style: Styless.textStyle12.copyWith(
                           color: const Color(0xff202e35),
                           fontWeight: FontWeight.w700,
@@ -58,7 +63,11 @@ class BookingSummaryFooter extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            ConfirmationBookingButton(),
+            ConfirmationBookingButton(
+              sportEntity: sportEntity,
+              bookingDate: bookingDate,
+              selectedTime: selectedTime,
+            ),
           ],
         ),
       ),

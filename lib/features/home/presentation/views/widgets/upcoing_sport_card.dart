@@ -49,7 +49,7 @@ class UpComingSportCard extends StatelessWidget {
                         sportName: sport?.name ?? 'Unknown Sport',
                         bookingEntity: bookingEntity,
                         subText:
-                            '${bookingEntity.bookingDate} , ${bookingEntity.startTime}',
+                            '${bookingEntity.bookingDate.toIso8601String().split('T').first} , ${bookingEntity.startTime.format(context)}',
                       ),
                       const SizedBox(height: 15),
                       DateRaw(bookingEntity: bookingEntity),

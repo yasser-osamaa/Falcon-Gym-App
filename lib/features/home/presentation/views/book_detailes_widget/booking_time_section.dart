@@ -12,7 +12,7 @@ class BookingTimeSection extends StatefulWidget {
     required this.duration,
   });
 
-  final ValueChanged<String> onTimeSelected;
+  final ValueChanged<TimeOfDay> onTimeSelected;
   final TimeOfDay opensAt;
   final TimeOfDay closesAt;
   final int duration;
@@ -77,7 +77,7 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
                         _selectedTime = time;
                       });
 
-                      widget.onTimeSelected(time.format(context));
+                      widget.onTimeSelected(time);
                     },
                   ),
                 ),
