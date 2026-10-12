@@ -10,9 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HistoryCard extends StatelessWidget {
-  const HistoryCard({super.key, required this.bookingEntity});
+  const HistoryCard({
+    super.key,
+    required this.bookingEntity,
+    required this.isPast,
+  });
 
   final BookingEntity bookingEntity;
+  final bool isPast;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class HistoryCard extends StatelessWidget {
             : null;
 
         return Container(
-          height: MediaQuery.sizeOf(context).height * .35,
+          height: MediaQuery.sizeOf(context).height * (isPast ? .24 : .35),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
@@ -46,6 +51,7 @@ class HistoryCard extends StatelessWidget {
                   subText: 'Indoor Court 02',
                   bookingEntity: bookingEntity,
                   sportName: sport?.name ?? 'Unknown Sport',
+                  statusText: isPast ? 'Done' : 'Confirmed',
                 ),
                 const SizedBox(height: 15),
                 Divider(
@@ -54,7 +60,7 @@ class HistoryCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 DateContainerRow(bookingEntity: bookingEntity),
-                const Expanded(child: SizedBox(height: 8)),
+                const Expanded(child: SizedBox(height: 10)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -76,37 +82,40 @@ class HistoryCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: 45,
-                  child: BlocConsumer<BookingCubit, BookingState>(
-                    listener: (context, state) {
-                      if (state is BookingActionSuccess) {
-                        context.read<BookingCubit>().getBookings(
-                          userId: bookingEntity.userId,
+                if (!isPast) ...[
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: 45,
+                    child: BlocConsumer<BookingCubit, BookingState>(
+                      listener: (context, state) {
+                        if (state is BookingActionSuccess) {
+                          context.read<BookingCubit>().getBookings(
+                            userId: bookingEntity.userId,
+                          );
+                        }
+                        if (state is BookingActionFailure) {
+                          showErrorSnackBar(context, state.errText);
+                        }
+                      },
+                      builder: (context, state) {
+                        final isLoading = state is BookingActionLoading;
+                        return CustomTextButton(
+                          text: isLoading ? 'Canceling...' : 'Cancel',
+                          onPressed: isLoading
+                              ? null
+                              : () {
+                                  context.read<BookingCubit>().cancelBooking(
+                                    bookingId: bookingEntity.id,
+                                  );
+                                },
                         );
-                      }
-                      if (state is BookingActionFailure) {
-                        showErrorSnackBar(context, state.errText);
-                      }
-                    },
-                    builder: (context, state) {
-                      final isLoading = state is BookingActionLoading;
-                      return CustomTextButton(
-                        text: isLoading ? 'Canceling...' : 'Cancel',
-                        onPressed: isLoading
-                            ? null
-                            : () {
-                                context.read<BookingCubit>().cancelBooking(
-                                  bookingId: bookingEntity.id,
-                                );
-                              },
-                      );
-                    },
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
+                  const SizedBox(height: 20),
+                ],
+                SizedBox(height: 10),
               ],
             ),
           ),

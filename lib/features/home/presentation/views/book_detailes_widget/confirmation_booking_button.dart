@@ -1,3 +1,4 @@
+import 'package:falcon_gym/constants.dart';
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
@@ -46,6 +47,11 @@ class ConfirmationBookingButton extends StatelessWidget {
               actions: [
                 Center(
                   child: FilledButton.icon(
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll<Color>(
+                        kPrimaryColor,
+                      ),
+                    ),
                     onPressed: () async {
                       Navigator.of(dialogContext).pop();
                       final userId =

@@ -9,10 +9,12 @@ class ConfirmedSportRow extends StatelessWidget {
     required this.subText,
     required this.bookingEntity,
     required this.sportName,
+    this.statusText = 'Confirmed',
   });
   final String subText;
   final BookingEntity bookingEntity;
   final String sportName;
+  final String statusText;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -48,7 +50,7 @@ class ConfirmedSportRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
           ),
           child: Text(
-            'Confirmed',
+            statusText,
             style: Styless.textStyle12.copyWith(
               color: Color(0xff417865),
               fontSize: 10,

@@ -67,12 +67,32 @@ class _BookingsHistoryViewBodyState extends State<BookingsHistoryViewBody> {
                       );
                     }
 
-                    return ListView.builder(
-                      itemCount: bookings.length,
-                      itemBuilder: (context, index) {
-                        return HistoryCard(bookingEntity: bookings[index]);
-                      },
-                    );
+                    return isUpcoming
+                        ? ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: bookings.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: HistoryCard(
+                                  bookingEntity: bookings[index],
+                                  isPast: false,
+                                ),
+                              );
+                            },
+                          )
+                        : ListView.builder(
+                            itemCount: bookings.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: HistoryCard(
+                                  bookingEntity: bookings[index],
+                                  isPast: true,
+                                ),
+                              );
+                            },
+                          );
                   }
 
                   if (state is BookingFailure ||
@@ -84,7 +104,7 @@ class _BookingsHistoryViewBodyState extends State<BookingsHistoryViewBody> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 70),
           ],
         ),
       ),
