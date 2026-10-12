@@ -1,6 +1,7 @@
 import 'package:falcon_gym/core/utils/functions/filter_bookings_function.dart';
 import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/core/widgets/shimmer/booking_history_shimmer.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/history_card.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/no_upcoming_bookings.dart';
@@ -49,8 +50,8 @@ class _BookingsHistoryViewBodyState extends State<BookingsHistoryViewBody> {
                   }
                 },
                 builder: (context, state) {
-                  if (state is BookingLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                  if (state is BookingLoading || state is BookingActionLoading) {
+                    return const BookingHistoryShimmer();
                   }
 
                   if (state is BookingSuccess) {

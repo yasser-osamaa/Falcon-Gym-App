@@ -1,5 +1,5 @@
-import 'package:falcon_gym/constants.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/core/widgets/shimmer/popular_activity_shimmer.dart';
 import 'package:falcon_gym/features/home/presentation/manager/sports_cubit/sports_cubit.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/popular_activity_list_view.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +24,7 @@ class PopularActivitySection extends StatelessWidget {
               } else if (state is SportsFailure) {
                 return Center(child: Text(state.errorText));
               } else {
-                return Center(
-                  child: CircularProgressIndicator(color: kPrimaryColor),
-                );
+                return const PopularActivityShimmer();
               }
             },
           ),

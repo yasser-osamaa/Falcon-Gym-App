@@ -3,6 +3,7 @@ import 'package:falcon_gym/core/utils/functions/generate_time_slot.dart';
 import 'package:falcon_gym/core/utils/functions/is_expired_slot.dart';
 import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/core/widgets/shimmer/booking_time_section_shimmer.dart';
 import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/manager/booked_slots_cubit/booked_slots_cubit.dart';
 import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
@@ -92,6 +93,10 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
         }
       },
       builder: (context, state) {
+        if (state is BookedSlotsInitial || state is BookedSlotsLoading) {
+          return const BookingTimeSectionShimmer();
+        }
+
         final bookings = state is BookedSlotsSuccess
             ? state.bookedList
             : <BookingEntity>[];

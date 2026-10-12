@@ -1,4 +1,4 @@
-import 'package:falcon_gym/constants.dart';
+import 'package:falcon_gym/core/widgets/shimmer/activity_card_shimmer.dart';
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/features/home/presentation/manager/sport_schedule_cubit/sport_schedule_cubit.dart';
 import 'package:falcon_gym/features/home/presentation/manager/sports_cubit/sports_cubit.dart';
@@ -38,7 +38,15 @@ class ActivityCardSliverList extends StatelessWidget {
             }, childCount: state.sports.length),
           );
         } else {
-          return Center(child: CircularProgressIndicator(color: kPrimaryColor));
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => const Padding(
+                padding: EdgeInsets.only(bottom: 15),
+                child: ActivityCardShimmer(),
+              ),
+              childCount: 4,
+            ),
+          );
         }
       },
     );

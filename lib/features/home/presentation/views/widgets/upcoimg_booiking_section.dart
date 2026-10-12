@@ -1,6 +1,7 @@
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
+import 'package:falcon_gym/core/widgets/shimmer/upcoming_booking_shimmer.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/no_upcoming_bookings.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/upcoing_sport_card.dart';
@@ -57,7 +58,9 @@ class UpComingBookingSection extends StatelessWidget {
             ),
 
             SizedBox(height: 10),
-            (state is BookingSuccess && state.bookings.isNotEmpty)
+            state is BookingLoading || state is BookingActionLoading
+                ? const UpcomingBookingShimmer()
+                : (state is BookingSuccess && state.bookings.isNotEmpty)
                 ? UpComingSportCard(bookingEntity: state.bookings.first)
                 : NoUpcomingBookings(),
           ],
