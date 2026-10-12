@@ -36,6 +36,23 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
   }
 
   @override
+  void didUpdateWidget(covariant BookingTimeSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.opensAt != widget.opensAt ||
+        oldWidget.closesAt != widget.closesAt ||
+        oldWidget.duration != widget.duration) {
+      times = generateTimeSlots(
+        opensAt: widget.opensAt,
+        closesAt: widget.closesAt,
+        duration: widget.duration,
+      );
+
+      _selectedTime = null;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
