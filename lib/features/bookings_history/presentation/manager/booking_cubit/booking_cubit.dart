@@ -23,26 +23,6 @@ class BookingCubit extends Cubit<BookingState> {
     );
   }
 
-  Future<void> getBookedSlots({
-    required int sportId,
-    required String bookingDate,
-  }) async {
-    emit(BookingLoading());
-    var response = await bookingRepo.getBookedSlots(
-      sportId: sportId,
-      bookingDate: bookingDate,
-    );
-
-    response.fold(
-      (fail) {
-        emit(BookingFailure(errText: fail.errorMessage));
-      },
-      (bookings) {
-        emit(BookingSuccess(bookings: bookings));
-      },
-    );
-  }
-
   Future<void> postBooking({
     required String userId,
     required int sportId,
