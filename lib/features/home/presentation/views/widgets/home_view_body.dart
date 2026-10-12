@@ -1,6 +1,6 @@
 import 'package:falcon_gym/features/home/presentation/views/widgets/book_and_gym_row_cards.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/popular_activity_section.dart';
-import 'package:falcon_gym/features/home/presentation/views/widgets/upcoimg_booiking_section.dart';
+import 'package:falcon_gym/features/home/presentation/views/widgets/upcoimg_booking_section.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/welcome_card.dart';
 import 'package:flutter/material.dart';
 

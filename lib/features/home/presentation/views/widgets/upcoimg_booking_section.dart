@@ -2,6 +2,7 @@ import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/core/widgets/shimmer/upcoming_booking_shimmer.dart';
+import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/no_upcoming_bookings.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/upcoing_sport_card.dart';
@@ -30,13 +31,28 @@ class UpComingBookingSection extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final now = DateTime.now();
+
+        final upcomingBookings = state is BookingSuccess
+            ? state.bookings.where((booking) {
+                final bookingEndDateTime = DateTime(
+                  booking.bookingDate.year,
+                  booking.bookingDate.month,
+                  booking.bookingDate.day,
+                  booking.endTime.hour,
+                  booking.endTime.minute,
+                );
+
+                return bookingEndDateTime.isAfter(now);
+              }).toList()
+            : <BookingEntity>[];
         return Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Upcoming Booking', style: Styless.textStyle16),
-                (state is BookingSuccess && state.bookings.isNotEmpty)
+                (state is BookingSuccess && upcomingBookings.isNotEmpty)
                     ? TextButton(
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -60,8 +76,8 @@ class UpComingBookingSection extends StatelessWidget {
             SizedBox(height: 10),
             state is BookingLoading || state is BookingActionLoading
                 ? const UpcomingBookingShimmer()
-                : (state is BookingSuccess && state.bookings.isNotEmpty)
-                ? UpComingSportCard(bookingEntity: state.bookings.first)
+                : (state is BookingSuccess && upcomingBookings.isNotEmpty)
+                ? UpComingSportCard(bookingEntity: upcomingBookings.first)
                 : NoUpcomingBookings(),
           ],
         );
