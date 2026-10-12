@@ -1,7 +1,9 @@
+import 'package:falcon_gym/core/utils/functions/is_expired_slot.dart';
 import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/can_not_cancel_today.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/custom_text_button.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/date_container_row.dart';
 import 'package:falcon_gym/features/home/presentation/manager/sports_cubit/sports_cubit.dart';
@@ -99,17 +101,23 @@ class HistoryCard extends StatelessWidget {
                         }
                       },
                       builder: (context, state) {
+                        final now = DateTime.now();
+                        final today = isSameDay(bookingEntity.bookingDate, now);
                         final isLoading = state is BookingActionLoading;
-                        return CustomTextButton(
-                          text: isLoading ? 'Canceling...' : 'Cancel',
-                          onPressed: isLoading
-                              ? null
-                              : () {
-                                  context.read<BookingCubit>().cancelBooking(
-                                    bookingId: bookingEntity.id,
-                                  );
-                                },
-                        );
+                        return today
+                            ? CannotCancelTodayWidget()
+                            : CustomTextButton(
+                                text: isLoading ? 'Canceling...' : 'Cancel',
+                                onPressed: isLoading
+                                    ? null
+                                    : () {
+                                        context
+                                            .read<BookingCubit>()
+                                            .cancelBooking(
+                                              bookingId: bookingEntity.id,
+                                            );
+                                      },
+                              );
                       },
                     ),
                   ),
