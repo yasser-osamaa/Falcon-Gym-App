@@ -57,6 +57,7 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                               onDateSelected: (date) {
                                 setState(() {
                                   _selectedDate = date;
+                                  _selectedTime = null;
                                 });
                               },
                             ),
@@ -75,6 +76,7 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                                     closesAt: schedule.closesAt,
                                     opensAt: schedule.opensAt,
                                     duration: widget.sportEntity.duration,
+                                    selectedDate: _selectedDate,
                                     onTimeSelected: (time) {
                                       setState(() {
                                         _selectedTime = time;

@@ -10,12 +10,15 @@ class BookingTimeSection extends StatefulWidget {
     required this.opensAt,
     required this.closesAt,
     required this.duration,
+    required this.selectedDate,
   });
 
   final ValueChanged<TimeOfDay> onTimeSelected;
   final TimeOfDay opensAt;
   final TimeOfDay closesAt;
   final int duration;
+  final DateTime selectedDate;
+
   @override
   State<BookingTimeSection> createState() => _BookingTimeSectionState();
 }
@@ -41,7 +44,8 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
 
     if (oldWidget.opensAt != widget.opensAt ||
         oldWidget.closesAt != widget.closesAt ||
-        oldWidget.duration != widget.duration) {
+        oldWidget.duration != widget.duration ||
+        oldWidget.selectedDate != widget.selectedDate) {
       times = generateTimeSlots(
         opensAt: widget.opensAt,
         closesAt: widget.closesAt,
@@ -54,6 +58,9 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final isToday = _isSameDay(widget.selectedDate, now);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -87,15 +94,17 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
                   width: (constraints.maxWidth - 16) / 3,
                   child: TimeOption(
                     time: time.format(context),
-                    available: true,
+                    available: !_isExpiredSlot(time, now, isToday),
                     selected: _selectedTime == time,
-                    onTap: () {
-                      setState(() {
-                        _selectedTime = time;
-                      });
+                    onTap: _isExpiredSlot(time, now, isToday)
+                        ? null
+                        : () {
+                            setState(() {
+                              _selectedTime = time;
+                            });
 
-                      widget.onTimeSelected(time);
-                    },
+                            widget.onTimeSelected(time);
+                          },
                   ),
                 ),
             ],
@@ -103,5 +112,25 @@ class _BookingTimeSectionState extends State<BookingTimeSection> {
         ),
       ],
     );
+  }
+
+  bool _isExpiredSlot(TimeOfDay time, DateTime now, bool isToday) {
+    if (!isToday) {
+      return false;
+    }
+
+    final slotEnd = DateTime(
+      widget.selectedDate.year,
+      widget.selectedDate.month,
+      widget.selectedDate.day,
+      time.hour,
+      time.minute,
+    ).add(Duration(minutes: widget.duration));
+
+    return !slotEnd.isAfter(now);
+  }
+
+  bool _isSameDay(DateTime a, DateTime b) {
+    return a.year == b.year && a.month == b.month && a.day == b.day;
   }
 }
