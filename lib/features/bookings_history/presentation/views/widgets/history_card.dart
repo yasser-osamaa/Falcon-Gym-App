@@ -2,7 +2,7 @@ import 'package:falcon_gym/core/utils/functions/is_expired_slot.dart';
 import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
 import 'package:falcon_gym/features/bookings_history/domain/entities/booking_entity.dart';
-import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/can_not_cancel_today.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/custom_text_button.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/date_container_row.dart';

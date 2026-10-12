@@ -73,6 +73,7 @@ class _BookDetailesViewBodyState extends State<BookDetailesViewBody> {
                                         (item) => item.day == selectedDay,
                                       );
                                   return BookingTimeSection(
+                                    sportEntity: widget.sportEntity,
                                     closesAt: schedule.closesAt,
                                     opensAt: schedule.opensAt,
                                     duration: widget.sportEntity.duration,

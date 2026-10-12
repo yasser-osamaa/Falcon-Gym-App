@@ -1,7 +1,7 @@
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/functions/snackbars_type.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
-import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/presentation/views/widgets/no_upcoming_bookings.dart';
 import 'package:falcon_gym/features/home/presentation/views/widgets/upcoing_sport_card.dart';
 import 'package:flutter/material.dart';

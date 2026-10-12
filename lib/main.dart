@@ -4,7 +4,7 @@ import 'package:falcon_gym/core/utils/simple_bloc_observer.dart';
 import 'package:falcon_gym/features/auth/domain/repos/auth_repo.dart';
 import 'package:falcon_gym/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:falcon_gym/features/bookings_history/domain/repos/booking_repo.dart';
-import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/gym/domain/repos/gym_repo.dart';
 import 'package:falcon_gym/features/gym/presentation/view/manager/cubit/gym_exercises_cubit.dart';
 import 'package:falcon_gym/features/home/domain/repo/sports_repo.dart';

@@ -1,7 +1,7 @@
 import 'package:falcon_gym/constants.dart';
 import 'package:falcon_gym/core/utils/app_router.dart';
 import 'package:falcon_gym/core/utils/styless.dart';
-import 'package:falcon_gym/features/bookings_history/presentation/manager/cubit/booking_cubit.dart';
+import 'package:falcon_gym/features/bookings_history/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:falcon_gym/features/home/domain/entities/sport_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
